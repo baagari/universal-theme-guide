@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="دليل استخدام ثيم يونيفرسال لمتاجر زد: التثبيت، الرئيسية وأقسامها، الإعدادات، مقاسات الصور، وحل المشاكل. Universal theme for Zid stores: user guide.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%231F5F5B%22/%3E%3Ctext x=%2232%22 y=%2244%22 font-size=%2236%22 text-anchor=%22middle%22 fill=%22%23fff%22 font-family=%22sans-serif%22 font-weight=%22700%22%3EU%3C/text%3E%3C/svg%3E">
+<style>:root{box-sizing:border-box}body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>دليل ثيم يونيفرسال</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a merchant manual — sticky chapter index at the side on wide screens, chapters as long-form sections,
+   the home-sections catalogue kept as chapter 3 with its phone/computer frames. */
+:root {
+  --bg: #F2F5F4; --surface: #FFFFFF; --ink: #15201F; --muted: #566664; --line: #D9E2E0;
+  --accent: #1F5F5B; --accent-ink: #FFFFFF; --soft: #E2EEEC; --bezel: #1A2322; --shade: rgba(16, 32, 30, .08);
+  --warn-bg: #FFF4E0; --warn-ink: #6B4A00; --code-bg: #EEF3F2;
+  --sans: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0E1413; --surface: #161F1E; --ink: #E6EEEC; --muted: #9AACA9; --line: #293634;
+  --accent: #6CC4B8; --accent-ink: #0E1413; --soft: #1C3431; --bezel: #000000; --shade: rgba(0, 0, 0, .35);
+  --warn-bg: #3A2E12; --warn-ink: #F3D9A0; --code-bg: #1C2726; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0E1413; --surface: #161F1E; --ink: #E6EEEC; --muted: #9AACA9; --line: #293634;
+  --accent: #6CC4B8; --accent-ink: #0E1413; --soft: #1C3431; --bezel: #000000; --shade: rgba(0, 0, 0, .35);
+  --warn-bg: #3A2E12; --warn-ink: #F3D9A0; --code-bg: #1C2726; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.7; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.pg[data-lang="ar"] [lang="en"], .pg[data-lang="en"] [lang="ar"] { display: none !important; }
+.wrap { max-width: 1180px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: var(--accent); }
+code, .px { font-family: var(--mono); font-size: .9em; direction: ltr; unicode-bidi: isolate; }
+code { background: var(--code-bg); padding: 1px 6px; border-radius: 5px; }
+
+/* top bar */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; align-items: center; gap: 12px; padding-block: 10px; flex-wrap: wrap; }
+.brand { font-weight: 700; display: flex; align-items: center; gap: 10px; margin-inline-end: auto; }
+.brand i { width: 28px; height: 28px; border-radius: 8px; background: var(--accent); display: grid; place-items: center; color: var(--accent-ink); font-style: normal; font-size: 15px; }
+.ver { font-size: 13px; color: var(--muted); }
+.lang, .chip, .tocbtn { font: inherit; font-size: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  padding: 5px 14px; border-radius: 999px; cursor: pointer; }
+.lang { font-weight: 600; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.chip:focus-visible, .lang:focus-visible, .zoom:focus-visible, a:focus-visible, .tocbtn:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* intro */
+.intro { padding-block: 48px 24px; display: grid; gap: 16px; }
+.eyebrow { color: var(--accent); font-weight: 600; font-size: 14px; letter-spacing: .02em; }
+h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.2; margin: 0; text-wrap: balance; font-weight: 700; }
+.lede { font-size: 18px; color: var(--muted); max-width: 62ch; margin: 0; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 0; padding: 0; list-style: none; }
+.facts li { background: var(--soft); border-radius: 10px; padding: 8px 14px; font-size: 15px; }
+.facts b { font-size: 18px; margin-inline-end: 6px; }
+
+/* body layout: index + chapters */
+.body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 8px 48px; }
+@media (min-width: 1000px) { .body { grid-template-columns: 250px minmax(0, 1fr); align-items: start; } }
+.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 64px); background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; font-size: 14px; max-height: calc(100vh - 90px); overflow: auto; }
+.toc summary { font-weight: 600; cursor: pointer; list-style: none; }
+.toc summary::-webkit-details-marker { display: none; }
+.toc ol { margin: 10px 0 0; padding-inline-start: 0; list-style: none; display: grid; gap: 2px; counter-reset: ch; }
+.toc li a { display: flex; gap: 8px; color: var(--ink); text-decoration: none; padding: 5px 8px; border-radius: 8px; counter-increment: ch; }
+.toc li a::before { content: counter(ch); color: var(--muted); font-family: var(--mono); font-size: 12px; min-width: 18px; padding-top: 3px; }
+.toc li a:hover, .toc li a.on { background: var(--soft); color: var(--accent); }
+@media (max-width: 999px) { .toc { position: static; max-height: none; } .toc ol { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); } }
+
+.chapters { display: grid; gap: 28px; min-width: 0; }
+.ch { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: clamp(18px, 3vw, 32px); scroll-margin-top: 80px; min-width: 0; }
+.ch__num { color: var(--accent); font-size: 13px; font-weight: 600; font-family: var(--mono); }
+.ch h2 { font-size: 26px; margin: 2px 0 6px; text-wrap: balance; line-height: 1.3; }
+.ch__sum { margin: 0 0 18px; color: var(--muted); max-width: 65ch; font-size: 17px; }
+.ch h3 { font-size: 20px; margin: 26px 0 10px; text-wrap: balance; }
+.ch h4 { font-size: 17px; margin: 18px 0 8px; }
+.ch p { margin: 0 0 12px; max-width: 72ch; }
+.ch ul, .ch ol { margin: 0 0 12px; padding-inline-start: 22px; max-width: 72ch; }
+.ch li { margin-bottom: 4px; }
+.ch li > ul { margin-top: 4px; }
+.sub { margin-top: 24px; }
+.sub + .sub { padding-top: 8px; }
+
+/* notes */
+.note { background: var(--soft); border-radius: 12px; padding: 12px 16px; margin: 12px 0 16px; max-width: 72ch; }
+.note b:first-child { display: block; margin-bottom: 2px; }
+.note--warn { background: var(--warn-bg); color: var(--warn-ink); }
+.path { display: inline-flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 14px; }
+.path span { background: var(--code-bg); padding: 2px 8px; border-radius: 6px; }
+.path i { font-style: normal; color: var(--muted); }
+
+/* settings tables */
+.tablewrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; margin: 12px 0 18px; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+caption { text-align: start; font-weight: 600; padding-bottom: 6px; }
+th, td { text-align: start; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+thead th { color: var(--ink); font-weight: 600; background: var(--soft); }
+tbody tr:last-child td { border-bottom: 0; }
+td.k { font-weight: 500; white-space: nowrap; }
+.tablewrap a { color: var(--accent); text-decoration: none; } .tablewrap a:hover { text-decoration: underline; }
+.px { font-size: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.px i { font-style: normal; color: var(--muted); padding-inline: 4px; }
+
+/* demo shots */
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin: 14px 0 20px; align-items: start; }
+.shot { margin: 0; display: grid; gap: 8px; min-width: 0; }
+.shot figcaption { font-size: 14px; color: var(--muted); }
+.shot figcaption b { color: var(--ink); margin-inline-end: 6px; }
+.shot__frame { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--code-bg); box-shadow: 0 8px 24px var(--shade); }
+.shot--phone .shot__frame { border: 8px solid var(--bezel); border-top-width: 20px; border-bottom-width: 20px; border-radius: 28px; max-width: 300px; }
+.shot__frame img { display: block; width: 100%; height: auto; }
+.shot.pending .shot__frame img { display: none; }
+.shot__wait { display: none; padding: 28px 14px; text-align: center; color: var(--muted); font-size: 13px; }
+.shot.pending .shot__wait { display: block; }
+.shot.pending .shot__wait code { display: block; margin-top: 6px; font-size: 12px; }
+.shot--phone.pending .shot__frame { aspect-ratio: 9 / 16; display: grid; place-items: center; }
+.shot--desk.pending .shot__frame { aspect-ratio: 16 / 10; display: grid; place-items: center; }
+
+/* catalogue cards (chapter 3) */
+.common { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 0; }
+.cm { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.cm dt { font-weight: 600; } .cm dd { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+.list { display: grid; gap: 22px; padding-block: 8px 8px; }
+.sec { background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: clamp(16px, 2.5vw, 26px); scroll-margin-top: 80px; }
+.sec[hidden] { display: none; }
+.sec__head { display: grid; gap: 4px; margin-bottom: 18px; }
+.sec__tag { color: var(--accent); font-size: 13px; font-weight: 600; }
+.sec h4 { font-size: 22px; margin: 0; line-height: 1.3; }
+.sec__sum { margin: 0; color: var(--muted); max-width: 65ch; }
+.sec__body { display: grid; grid-template-columns: minmax(0, 250px) minmax(0, 1fr); gap: 24px; align-items: start; }
+.sec__side { display: grid; gap: 18px; min-width: 0; }
+@media (max-width: 760px) { .sec__body { grid-template-columns: minmax(0, 1fr); } .dev--phone { max-width: 300px; } }
+.dev { margin: 0; display: grid; gap: 10px; min-width: 0; }
+.dev figcaption { font-size: 15px; color: var(--muted); }
+.dev figcaption b { color: var(--ink); margin-inline-end: 6px; }
+.zoom { all: unset; display: block; cursor: zoom-in; }
+.zoom img { display: block; width: 100%; height: auto; }
+.phone { border: 9px solid var(--bezel); border-top-width: 22px; border-bottom-width: 22px; border-radius: 30px; overflow: hidden;
+  background: #F7F7F7; box-shadow: 0 10px 30px var(--shade); position: relative; max-width: 100%; }
+.phone::before { content: ""; position: absolute; top: -14px; left: 50%; translate: -50% 0; width: 46px; height: 6px; border-radius: 3px; background: #3A4645; }
+.desk { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #F7F7F7; box-shadow: 0 10px 30px var(--shade); max-width: 100%; }
+.desk__bar { display: flex; gap: 6px; padding: 9px 12px; background: var(--soft); direction: ltr; }
+.desk__bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.dev--none { border: 1px dashed var(--line); border-radius: 12px; padding: 18px; color: var(--muted); }
+.dev--none p { margin: 0; }
+.spec { display: grid; gap: 14px; }
+.spec table { font-size: 15px; } .spec th { font-weight: 500; color: var(--muted); width: 50%; }
+.count { margin: 0; font-size: 15px; } .count b { margin-inline-end: 6px; }
+.opts { margin: 0; padding-inline-start: 20px; display: grid; gap: 4px; font-size: 15px; color: var(--muted); }
+.rules { margin: 0; padding-inline-start: 22px; display: grid; gap: 6px; max-width: 70ch; }
+
+/* FAQ / troubleshooting */
+details.q { border-top: 1px solid var(--line); padding: 10px 0; max-width: 72ch; }
+details.q summary { cursor: pointer; font-weight: 600; }
+details.q p { margin: 8px 0 0; color: var(--muted); }
+
+footer { padding-block: 24px 48px; color: var(--muted); font-size: 14px; }
+dialog { border: 0; padding: 0; background: transparent; max-width: min(96vw, 1460px); max-height: 92vh; }
+dialog::backdrop { background: rgba(8, 14, 13, .82); }
+dialog img { display: block; max-width: min(96vw, 1460px); max-height: 92vh; width: auto; height: auto; border-radius: 10px; }
+dialog form { position: fixed; top: max(12px, env(safe-area-inset-top, 0px)); inset-inline-end: max(12px, env(safe-area-inset-right, 0px)); }
+dialog button { font: inherit; border: 0; border-radius: 999px; padding: 6px 16px; background: #fff; color: #111; cursor: pointer; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="pg" data-lang="ar" dir="rtl" lang="ar">
+  <div class="bar"><div class="wrap">
+    <span class="brand"><i aria-hidden="true">ي</i><span lang="ar">يونيفرسال</span><span lang="en">Universal</span> <span class="ver"><span lang="ar">دليل الاستخدام · الإصدار 1.0</span><span lang="en">User guide · version 1.0</span></span></span>
+    <a class="tocbtn" href="#toc"><span lang="ar">الفهرس</span><span lang="en">Contents</span></a>
+    <button type="button" class="lang" id="lang"><span lang="ar">English</span><span lang="en">العربية</span></button>
+  </div></div>
+
+  <main>
+    <section class="wrap intro">
+      <span class="eyebrow"><span lang="ar">ثيم لمتاجر زد</span><span lang="en">A theme for Zid stores</span></span>
+      <h1><span lang="ar">دليل استخدام ثيم يونيفرسال</span><span lang="en">Universal theme user guide</span></h1>
+      <p class="lede"><span lang="ar">كل ما يحتاجه التاجر لتركيب الثيم وبناء رئيسيته وضبط صفحاته، من أول يوم إلى ما بعد الإطلاق. الأمثلة من المتجر التجريبي «الرياض للتموين»، وكل إعداد مذكور باسمه كما يظهر في محرر الثيم في زد.</span><span lang="en">Everything a merchant needs to install the theme, build the home page and set up every page, from day one to after launch. Examples come from the demo store “Riyadh Tamween”, and every setting is named exactly as it appears in Zid’s theme editor.</span></p>
+      <ul class="facts">
+        <li><b>18</b><span lang="ar">فصلاً</span><span lang="en">chapters</span></li>
+        <li><b>15</b><span lang="ar">قسماً للرئيسية</span><span lang="en">home sections</span></li>
+        <li><span lang="ar">عربي وإنجليزي</span><span lang="en">Arabic and English</span></li>
+        <li><span lang="ar">الجوال أولاً</span><span lang="en">Phone first</span></li>
+        <li><span lang="ar">3 هيئات جاهزة</span><span lang="en">3 ready presets</span></li>
+      </ul>
+    </section>
+
+    <div class="wrap body">
+      <details class="toc" id="toc" open>
+        <summary><span lang="ar">الفهرس</span><span lang="en">Contents</span></summary>
+        <ol>
+          <li><a href="#about"><span lang="ar">عن الثيم</span><span lang="en">About the theme</span></a></li>
+          <li><a href="#install"><span lang="ar">التثبيت والهيئات الجاهزة</span><span lang="en">Installing and presets</span></a></li>
+          <li><a href="#home"><span lang="ar">الصفحة الرئيسية وأقسامها</span><span lang="en">Home page and its sections</span></a></li>
+          <li><a href="#identity"><span lang="ar">الشعار والألوان والخط</span><span lang="en">Logo, colors and font</span></a></li>
+          <li><a href="#menus"><span lang="ar">القوائم والأقسام</span><span lang="en">Menus and categories</span></a></li>
+          <li><a href="#header"><span lang="ar">الهيدر والشريط العلوي والبحث</span><span lang="en">Header, top bar and search</span></a></li>
+          <li><a href="#product"><span lang="ar">بطاقة المنتج وصفحة المنتج</span><span lang="en">Product card and product page</span></a></li>
+          <li><a href="#listing"><span lang="ar">صفحات التصنيف والماركات والبحث</span><span lang="en">Category, brand and search pages</span></a></li>
+          <li><a href="#cart"><span lang="ar">السلة والدفع</span><span lang="en">Cart and checkout</span></a></li>
+          <li><a href="#footer"><span lang="ar">أسفل الصفحة</span><span lang="en">Bottom of the page</span></a></li>
+          <li><a href="#agegate"><span lang="ar">نافذة العمر</span><span lang="en">Age gate</span></a></li>
+          <li><a href="#languages"><span lang="ar">العربية والإنجليزية</span><span lang="en">Arabic and English</span></a></li>
+          <li><a href="#sizes"><span lang="ar">مقاسات الصور</span><span lang="en">Image sizes</span></a></li>
+          <li><a href="#devices"><span lang="ar">الجوال مقابل الكمبيوتر</span><span lang="en">Phone versus computer</span></a></li>
+          <li><a href="#zid"><span lang="ar">ما يأتي من لوحة زد</span><span lang="en">What comes from the Zid dashboard</span></a></li>
+          <li><a href="#limits"><span lang="ar">الحدود المعروفة</span><span lang="en">Known limits</span></a></li>
+          <li><a href="#trouble"><span lang="ar">حل المشاكل</span><span lang="en">Troubleshooting</span></a></li>
+          <li><a href="#support"><span lang="ar">الدعم والإصدارات</span><span lang="en">Support and versions</span></a></li>
+        </ol>
+      </details>
+
+      <div class="chapters">
+<section class="ch" id="about">
+  <span class="ch__num">01</span>
+  <h2><span lang="ar">عن الثيم</span><span lang="en">About the theme</span></h2>
+  <p class="ch__sum"><span lang="ar">يونيفرسال ثيم زد يبني متجراً كاملاً من الرئيسية إلى السلة، مصمم للجوال أولاً ويعمل بالعربية والإنجليزية معاً، ويترك كل قرار في يد التاجر من محرر الثيم.</span><span lang="en">Universal is a Zid theme that builds the whole store, from the home page to the cart. It is designed for phones first, works in Arabic and English together, and leaves every decision to the merchant in the theme editor.</span></p>
+
+  <div class="shots">
+    <figure class="shot shot--phone"><div class="shot__frame"><img lang="ar" src="demo/home-m-ar.webp" alt="الرئيسية في الجوال" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><img lang="en" src="demo/home-m-en.webp" alt="Home on a phone" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/home-m-ar.webp · home-m-en.webp</code></div></div><figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b><span lang="ar">رئيسية المتجر التجريبي «الرياض للتموين».</span><span lang="en">The demo store “Riyadh Tamween”, home page.</span></figcaption></figure>
+    <figure class="shot shot--desk"><div class="shot__frame"><img lang="ar" src="demo/home-d-ar.webp" alt="الرئيسية في الكمبيوتر" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><img lang="en" src="demo/home-d-en.webp" alt="Home on a computer" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/home-d-ar.webp · home-d-en.webp</code></div></div><figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b><span lang="ar">الصفحة نفسها بهيدر الكمبيوتر وفوتره.</span><span lang="en">The same page with the computer header and footer.</span></figcaption></figure>
+  </div>
+
+  <h3><span lang="ar">لمن هذا الثيم</span><span lang="en">Who it is for</span></h3>
+  <p><span lang="ar">لأي متجر يبيع تشكيلة واسعة بأقسام وماركات كثيرة ويأتيه معظم زواره من الجوال: الأطعمة والمكسرات والتمور والقهوة، والعطارة والعطور، والعناية والتجميل، والأزياء، وأي متجر يحتاج رئيسية غنية بالبنرات والعروض. المتجر التجريبي «الرياض للتموين» فيه نحو 1000 منتج و20 قسماً رئيسياً وعشرات الماركات، وهو مثال حي على ما يتحمله الثيم.</span><span lang="en">Any store with a wide range, many categories and brands, and most visitors on phones: food, nuts, dates and coffee, herbs and perfumes, beauty, fashion, and any store that needs a home page rich in banners and offers. The demo store “Riyadh Tamween” has about 1,000 products, 20 main categories and dozens of brands, a live example of what the theme carries.</span></p>
+
+  <h3><span lang="ar">ما يميزه</span><span lang="en">What sets it apart</span></h3>
+  <ul>
+    <li><span lang="ar"><b>رئيسية من مكتبة أقسام:</b> 15 نوعاً من الأقسام (بنرات، ودوائر، ومربعات، وسلايدرات منتجات، وصندوق ماركة) تضيفها بأي عدد وترتبها من المحرر، ولكل قسم خيار الظهور في الجوال أو الكمبيوتر أو كليهما، فتبني صفحة غنية للجوال وأخرى أبسط للكمبيوتر من المحرر نفسه.</span><span lang="en"><b>A home page built from a section library:</b> 15 section types (banners, circles, tiles, product sliders and a brand box) you add in any number and reorder in the editor. Each section can show on phones, computers or both, so you build a rich phone page and a simpler computer page in the same editor.</span></li>
+    <li><span lang="ar"><b>الجوال أولاً:</b> شريط سفلي ثابت بخمسة عناصر، وبحث يثبت أعلى الشاشة، ونوافذ سفلية بدل الصفحات، وزر إضافة ثابت في صفحة المنتج، وزر الرجوع في الجوال يغلق النوافذ قبل أن يخرج من الصفحة.</span><span lang="en"><b>Phone first:</b> a fixed bottom bar with five items, a search field that sticks to the top, bottom sheets instead of pages, a fixed add-to-cart button on the product page, and a phone back button that closes sheets before it leaves the page.</span></li>
+    <li><span lang="ar"><b>لغتان في محرر واحد:</b> تُبنى الرئيسية مرة واحدة بحقول اللغتين في كل قسم، ويعرض الثيم لغة الزائر ويرجع إلى العربية إذا فرغ الإنجليزي.</span><span lang="en"><b>Two languages in one editor:</b> the home page is built once, with both languages’ fields in every section; the theme shows the visitor’s language and falls back to Arabic when English is empty.</span></li>
+    <li><span lang="ar"><b>عداد حقيقي للعروض:</b> يقرأ تاريخ نهاية التخفيض من زد لكل منتج، ويعرض «باقي 3 أيام» ثم «ينتهي بعد 18:51:43» في اليوم الأخير، وللحملات الموسمية تاريخ نهاية لكل بنر يختفي بعده وحده.</span><span lang="en"><b>A real countdown:</b> it reads each product’s sale end date from Zid and shows “3 days left”, then “ends in 18:51:43” on the last day. Seasonal campaigns get an end date per banner, and the banner hides itself afterwards.</span></li>
+    <li><span lang="ar"><b>شريط الشحن المجاني في السلة:</b> يحسب ما بقي للحد، ويستثني تصنيفاً والمنتجات المخفضة إن أردت، ويطبّق الكود بزر واحد.</span><span lang="en"><b>A free-shipping bar in the cart:</b> it shows what is left to the threshold, can exclude a category and discounted products, and applies the code with one button.</span></li>
+    <li><span lang="ar"><b>بحث فوري:</b> اقتراحات من الحرف الثاني (أقسام، وماركات مميزة، ومنتجات بالصورة والسعر)، و«الأكثر بحثاً» و«آخر عمليات البحث».</span><span lang="en"><b>Instant search:</b> suggestions from the second letter (categories, featured brands, products with image and price), plus “Popular searches” and “Recent searches”.</span></li>
+    <li><span lang="ar"><b>يدعم ميزات زد التي يطلبها السوق:</b> نافذة المنطقة، والتقسيط، وخصومات البنوك، وبرنامج الولاء والمكافآت، والإهداء، والحجز المسبق، والمنتجات المجمّعة، والحزم، والتقييمات والأسئلة، وApple Pay. كل ميزة تُشغَّل أو تُطفأ من لوحة زد لا من الثيم.</span><span lang="en"><b>Supports the Zid features the market asks for:</b> the region window, installments, bank discounts, loyalty and rewards, gifting, preorder, grouped products, bundles, reviews and questions, and Apple Pay. Each is switched on or off in the Zid dashboard, not in the theme.</span></li>
+    <li><span lang="ar"><b>ثلاث هيئات جاهزة</b> (إحداها داكنة) تطبّقها بنقرة ثم تعدّل ما تشاء.</span><span lang="en"><b>Three ready presets</b> (one of them dark) you apply in one click and then adjust.</span></li>
+  </ul>
+
+  <h3><span lang="ar">ما يبنيه الثيم وما يبقى لزد</span><span lang="en">What the theme builds and what stays with Zid</span></h3>
+  <p><span lang="ar">الثيم يبني كل الصفحات: الرئيسية، والتصنيف، والأقسام، والماركة، والماركات، والبحث، والمنتج، والسلة، والتقييمات، والأسئلة، والمدونة، والأسئلة الشائعة، والشحن والدفع، والصفحات القانونية، وصفحة «غير موجودة». وتبقى على نسخة زد الجاهزة صفحات الحساب (الملف، والطلبات، والمفضلة) وصفحة إتمام الدفع، كما تشترط زد.</span><span lang="en">The theme builds every page: home, category, categories, brand, brands, search, product, cart, reviews, questions, blog, FAQs, shipping and payment, legal pages and the “not found” page. Account pages (profile, orders, wishlist) and the checkout page stay on Zid’s own versions, as Zid requires.</span></p>
+
+  <h3><span lang="ar">كيف تقرأ هذا الدليل</span><span lang="en">How to read this guide</span></h3>
+  <p><span lang="ar">الفصول 2 و3 و4 تكفي ليوم التركيب. الفصول 5 إلى 11 مرجع لكل صفحة وإعداداتها. الفصول 12 إلى 18 لما يُسأل عنه كثيراً: اللغتان، والمقاسات، وحدود الثيم، وحل المشاكل. أسماء الإعدادات مكتوبة بين قوسين «» كما تظهر في المحرر، والمسار إلى كل مجموعة مكتوب هكذا:</span><span lang="en">Chapters 2, 3 and 4 are enough for installation day. Chapters 5 to 11 are a reference for every page and its settings. Chapters 12 to 18 cover what gets asked most: the two languages, image sizes, the theme’s limits and troubleshooting. Setting names are written in quotes exactly as they appear in the editor, and the path to each group is written like this:</span></p>
+  <p class="path"><span><span lang="ar">محرر الثيم</span><span lang="en">Theme editor</span></span><i>←</i><span><span lang="ar">إعدادات الثيم</span><span lang="en">Theme settings</span></span><i>←</i><span><span lang="ar">الألوان</span><span lang="en">Colors</span></span></p>
+</section>
+
+<section class="ch" id="install">
+  <span class="ch__num">02</span>
+  <h2><span lang="ar">التثبيت والهيئات الجاهزة</span><span lang="en">Installing and presets</span></h2>
+  <p class="ch__sum"><span lang="ar">من شراء الثيم إلى أول «نشر»: ثلاث خطوات في لوحة زد، ثم بيانات يجب أن تكون جاهزة قبل أن تبدو الرئيسية كما في الصور.</span><span lang="en">From buying the theme to the first “Publish”: three steps in the Zid dashboard, then the data that must be ready before the home page looks like the pictures.</span></p>
+
+  <h3><span lang="ar">الخطوات</span><span lang="en">The steps</span></h3>
+  <ol>
+    <li><span lang="ar"><b>التثبيت من سوق الثيمات.</b> من لوحة زد: المتجر الإلكتروني ← الثيمات ← سوق الثيمات، ثم «يونيفرسال». بعد الشراء يظهر الثيم في قائمة ثيمات متجرك بحالة «غير منشور»، ولا يراه العملاء بعد.</span><span lang="en"><b>Install from the Theme Market.</b> In the Zid dashboard: Online store → Themes → Theme Market, then “Universal”. After purchase, the theme appears in your store’s theme list as unpublished; customers do not see it yet.</span></li>
+    <li><span lang="ar"><b>اختر هيئة جاهزة.</b> الهيئة ملف إعدادات كامل: الألوان، والخط، وترتيب الرئيسية بأقسامها، وإعدادات الهيدر والفوتر. طبّق إحدى الهيئات الثلاث (الفصل التالي يصفها) فتحصل على رئيسية مرتبة فوراً، ثم استبدل صورها بصورك.</span><span lang="en"><b>Pick a preset.</b> A preset is a complete settings file: colors, font, the home page with its sections, and the header and footer settings. Apply one of the three presets (described below) to get an arranged home page at once, then replace its pictures with yours.</span></li>
+    <li><span lang="ar"><b>افتح محرر الثيم</b> («تخصيص») وامرر على الفصول 3 و4 و6 و10 من هذا الدليل: الصور، والشعار والألوان، ونصوص الشريط العلوي والبحث، وشريط الثقة و«تحتاج مساعدة؟».</span><span lang="en"><b>Open the theme editor</b> (“Customize”) and go through chapters 3, 4, 6 and 10 of this guide: pictures, logo and colors, the top bar and search texts, the trust strip and “Need help?”.</span></li>
+    <li><span lang="ar"><b>عاين على الجوال والكمبيوتر</b> من زر المعاينة في المحرر، بالعربية ثم بالإنجليزية.</span><span lang="en"><b>Preview on phone and computer</b> from the editor’s preview button, in Arabic and then in English.</span></li>
+    <li><span lang="ar"><b>اضغط «نشر».</b> قبلها لا يتغير شيء للعملاء، فخذ وقتك.</span><span lang="en"><b>Press “Publish”.</b> Nothing changes for customers before that, so take your time.</span></li>
+  </ol>
+
+  <div class="note note--warn"><b><span lang="ar">قبل أن تنشر</span><span lang="en">Before you publish</span></b><span lang="ar">الفصل 15 يسرد بيانات لوحة زد التي يعتمد عليها الثيم: الماركات مربوطة بالمنتجات، و«معايير التصفية» مفعّلة، والقائمة الرئيسية مضبوطة، والصفحات القانونية مفعّلة، وشعار المتجر في «الهوية». بدونها تبدو الرئيسية ناقصة ولا تظهر الفلاتر ولا الماركات.</span><span lang="en">Chapter 15 lists the Zid dashboard data the theme relies on: brands linked to products, “Filter criteria” enabled, the main menu set up, legal pages enabled, and the store logo under “Branding”. Without them the home page looks incomplete and neither filters nor brands appear.</span></div>
+
+  <h3><span lang="ar">الهيئات الثلاث</span><span lang="en">The three presets</span></h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th><span lang="ar">الهيئة</span><span lang="en">Preset</span></th><th><span lang="ar">لمن</span><span lang="en">For whom</span></th><th><span lang="ar">ما فيها</span><span lang="en">What it holds</span></th></tr></thead>
+    <tbody>
+      <tr><td class="k"><span lang="ar">فاتحة</span><span lang="en">Light</span></td><td><span lang="ar">معظم المتاجر</span><span lang="en">Most stores</span></td><td><span lang="ar">أرضية رمادية فاتحة جداً، وبطاقات بيضاء، ولون الهوية من لوحة زد للأزرار والشريط العلوي، ورئيسية كاملة بالأقسام الخمسة عشر.</span><span lang="en">A very light grey page, white cards, the dashboard’s brand color for buttons and the top bar, and a full home page using all fifteen sections.</span></td></tr>
+      <tr><td class="k"><span lang="ar">داكنة</span><span lang="en">Dark</span></td><td><span lang="ar">الإلكترونيات والعطور والمنتجات الفاخرة</span><span lang="en">Electronics, perfumes and premium goods</span></td><td><span lang="ar">أرضية داكنة وبطاقات أغمق قليلاً ونص فاتح، بالأقسام نفسها. الوضع الداكن هيئة يختارها التاجر، لا زراً يبدّله الزائر.</span><span lang="en">A dark page, slightly darker cards and light text, with the same sections. Dark is a preset the merchant chooses, not a toggle for the visitor.</span></td></tr>
+      <tr><td class="k"><span lang="ar">مختصرة</span><span lang="en">Compact</span></td><td><span lang="ar">متجر بمنتجات قليلة أو يبدأ الآن</span><span lang="en">A store with few products, or one just starting</span></td><td><span lang="ar">رئيسية قصيرة: بنر رئيسي، ودوائر، وشريط، وسلايدر عروض، ووصل حديثاً، وشريط الثقة. تضيف إليها ما تشاء لاحقاً.</span><span lang="en">A short home page: main banner, circles, a strip, an offers slider, new arrivals and the trust strip. Add more later as you like.</span></td></tr>
+    </tbody>
+  </table></div>
+  <p><span lang="ar">تطبيق هيئة يستبدل إعدادات الثيم كلها بما فيها، فطبّقها في البداية قبل أن تعدّل بيدك. وبعد التطبيق كل شيء قابل للتعديل: الألوان، والخط، وكل قسم في الرئيسية.</span><span lang="en">Applying a preset replaces all theme settings with the preset’s, so apply it first, before editing by hand. Afterwards everything is editable: colors, font and every home section.</span></p>
+
+  <h3><span lang="ar">تحديثات الثيم</span><span lang="en">Theme updates</span></h3>
+  <p><span lang="ar">الإصدارات الجديدة تصلك من صفحة الثيم في لوحة زد مع سجل التغييرات بالعربية والإنجليزية. التحديث يبدّل ملفات الثيم ويبقي إعداداتك وصورك كما هي، ولا يغيّر أرقام الإعدادات أبداً. اقرأ سجل التغييرات قبل التحديث، وعاين قبل النشر.</span><span lang="en">New versions reach you from the theme’s page in the Zid dashboard, with the change log in Arabic and English. An update replaces the theme files and keeps your settings and pictures as they are; setting ids never change. Read the change log before updating, and preview before publishing.</span></p>
+</section>
+<section class="ch" id="home">
+  <span class="ch__num">03</span>
+  <h2><span lang="ar">الصفحة الرئيسية وأقسامها</span><span lang="en">Home page and its sections</span></h2>
+  <p class="ch__sum"><span lang="ar">تبني الرئيسية من محرر الثيم: تضيف الأقسام، وترتبها، وتكرر القسم الواحد أكثر من مرة، وتختار ما يظهر في الجوال وما يظهر في الكمبيوتر. هنا كل الأقسام بشكلها الحقيقي في المتجر التجريبي على الجهازين ومقاسات صورها. الإطار البرتقالي المتقطع في اللقطات يحدد مكان القسم على الشاشة.</span><span lang="en">You build the home page in the theme editor: add sections, reorder them, use any section more than once, and choose what shows on phones and what shows on computers. Here is every section as it really looks in the demo store on both devices, and the image sizes it takes. The dashed orange frame in the shots marks the section’s place on the screen.</span></p>
+
+  <h3><span lang="ar">كيف تعمل الرئيسية</span><span lang="en">How the home page works</span></h3>
+  <ul>
+    <li><span lang="ar"><b>الإضافة والترتيب:</b> في المحرر اضغط «إضافة قسم» واختر النوع، ثم اسحبه إلى مكانه. احذف ما لا تحتاجه. لا حد لعدد الأقسام.</span><span lang="en"><b>Adding and ordering:</b> in the editor press “Add section”, pick the type, then drag it into place. Delete what you do not need. There is no limit on the number of sections.</span></li>
+    <li><span lang="ar"><b>تُبنى مرة واحدة في محرر اللغة الرئيسية</b> (العربي عادة). كل قسم فيه حقول اللغتين، وقائمة أقسام المحرر الإنجليزي تبقى فارغة؛ الصفحة الإنجليزية تعرض أقسام العربي بنصوصها وصورها الإنجليزية. التفصيل في الفصل 12.</span><span lang="en"><b>Built once, in the main language’s editor</b> (usually Arabic). Every section has fields for both languages, and the English editor’s section list stays empty; the English page shows the Arabic editor’s sections with their English texts and pictures. Details in chapter 12.</span></li>
+    <li><span lang="ar"><b>صفحتان من أقسام واحدة:</b> إعداد «الظهور» في كل قسم (الجوال والكمبيوتر، أو الجوال فقط، أو الكمبيوتر فقط) يجعل رئيسية الجوال غنية بالدوائر والشرائط، ورئيسية الكمبيوتر أبسط بالبنرات العريضة والسلايدرات، من القائمة نفسها.</span><span lang="en"><b>Two pages from one list:</b> each section’s “Visibility” setting (phone and computer, phone only, or computer only) lets the phone home be rich in circles and strips while the computer home stays simpler with wide banners and sliders, all from one list.</span></li>
+    <li><span lang="ar"><b>العناقيد:</b> الطريقة التي يتبعها المتجر التجريبي: لكل قسم رئيسي بنر، ثم مربعات لفروعه أو ماركاته، ثم سلايدر منتجاته. كرر العنقود لكل قسم مهم بترتيب مبيعاتك.</span><span lang="en"><b>Clusters:</b> the pattern the demo store follows: for each main category a banner, then tiles for its subcategories or brands, then a slider of its products. Repeat the cluster for every important category, in the order of your sales.</span></li>
+    <li><span lang="ar"><b>السلايدر التلقائي:</b> أي قسم فيه أكثر من بنر يصير سلايدر يتبدل كل 3 ثوانٍ، بنقاط في الجوال وأسهم في الكمبيوتر، ويتوقف ما دام الماوس فوقه.</span><span lang="en"><b>Automatic slider:</b> any section with more than one banner becomes a slider that rotates every 3 seconds, with dots on phones and arrows on computers, and pauses while the mouse is over it.</span></li>
+    <li><span lang="ar"><b>المنتجات النافدة في الرئيسية:</b> إعداد «إخفاء المنتج النافد من أقسام الرئيسية» في «بطاقة المنتج» يخفيها من السلايدرات والشبكات، وقد يعرض القسم حينها أقل من العدد المطلوب.</span><span lang="en"><b>Sold-out products on the home page:</b> the setting “Hide sold-out products from home sections” under “Product card” removes them from sliders and grids; a section may then show fewer products than requested.</span></li>
+  </ul>
+
+  <h3><span lang="ar">أقسام المنتجات: من أين تأتي المنتجات</span><span lang="en">Product sections: where the products come from</span></h3>
+  <p><span lang="ar">في «سلايدر منتجات» و«شبكة منتجات» وتبويبات «صندوق ماركة» حقل «المنتجات» هو منتقي زد نفسه: العروض، أو وصل حديثاً، أو منتجات تصنيف، أو منتجات تختارها بالترتيب الذي تريده. «العدد» حتى 20 في السلايدر، وعدد الصفوف في الشبكة. و«العداد في البطاقات» يُظهر العد التنازلي على المنتجات التي لها تاريخ نهاية تخفيض في زد.</span><span lang="en">In “Product slider”, “Product grid” and the tabs of “Brand box”, the “Products” field is Zid’s own picker: on sale, new arrivals, a category’s products, or products you pick in the order you want. “Count” goes up to 20 in a slider, and the grid takes a number of rows. “Countdown on cards” shows the timer on products that have a sale end date in Zid.</span></p>
+  <div class="note"><b><span lang="ar">الأكثر مبيعاً</span><span lang="en">Best sellers</span></b><span lang="ar">زد لا تعطي الثيم قائمة بالأكثر مبيعاً، فأنشئ تصنيفاً باسمه وضع فيه منتجاتك الأقوى، ثم اختره مصدراً للسلايدر. المتجر التجريبي يفعل ذلك في قسم «الأكثر مبيعاً».</span><span lang="en">Zid does not give the theme a best-sellers list, so create a category with that name, put your strongest products in it, then pick it as the slider’s source. The demo store does this in its “Best sellers” section.</span></div>
+    <div class="sub">
+      <h3><span lang="ar">في كل قسم</span><span lang="en">In every section</span></h3>
+      <dl class="common"><div class="cm"><dt><span lang="ar">الظهور</span><span lang="en">Visibility</span></dt><dd><span lang="ar">الجوال والكمبيوتر، أو الجوال فقط، أو الكمبيوتر فقط.</span><span lang="en">Phone and computer, phone only, or computer only.</span></dd></div><div class="cm"><dt><span lang="ar">العنوان</span><span lang="en">Title</span></dt><dd><span lang="ar">عنوان اختياري بالعربي والإنجليزي.</span><span lang="en">An optional title in Arabic and English.</span></dd></div><div class="cm"><dt><span lang="ar">«عرض الكل»</span><span lang="en">“View all”</span></dt><dd><span lang="ar">رابط اختياري بجانب العنوان.</span><span lang="en">An optional link beside the title.</span></dd></div><div class="cm"><dt><span lang="ar">الخلفية والمسافات</span><span lang="en">Background &amp; spacing</span></dt><dd><span lang="ar">لون خلفية للقسم، ومسافة فوقه وتحته: بلا، صغيرة، عادية.</span><span lang="en">A background color, and the space above and below: none, small, normal.</span></dd></div><div class="cm"><dt><span lang="ar">صورة لكل لغة</span><span lang="en">An image per language</span></dt><dd><span lang="ar">الصورة الإنجليزية اختيارية؛ إذا تُركت فارغة تظهر العربية.</span><span lang="en">The English image is optional; when empty, the Arabic one shows.</span></dd></div><div class="cm"><dt><span lang="ar">تاريخ النهاية</span><span lang="en">End date</span></dt><dd><span lang="ar">يظهر عداد على البنر، ويختفي البنر وحده بعد التاريخ.</span><span lang="en">A countdown shows on the banner, and the banner hides itself after the date.</span></dd></div><div class="cm"><dt><span lang="ar">للجوال فقط</span><span lang="en">Phone only</span></dt><dd><span lang="ar">أي بنر يمكن إخفاؤه من الكمبيوتر وحده.</span><span lang="en">Any single banner can be hidden on computers.</span></dd></div><div class="cm"><dt><span lang="ar">وصف الصورة</span><span lang="en">Image description</span></dt><dd><span lang="ar">نص بديل لكل صورة لمحركات البحث وقارئات الشاشة.</span><span lang="en">Alt text for each image, for search engines and screen readers.</span></dd></div></dl>
+    </div>
+
+    <div class="sub">
+      <h3><span lang="ar">الأقسام</span><span lang="en">The sections</span></h3>
+      <div class="list">
+<article class="sec" id="hero" data-group="banners">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">بنرات</span><span lang="en">Banners</span></span>
+    <h4><span lang="ar">البنر الرئيسي</span><span lang="en">Main banner</span></h4>
+    <p class="sec__sum"><span lang="ar">أول ما يراه الزائر. في الجوال يمتد خلف شريط البحث أعلى الصفحة.</span><span lang="en">The first thing visitors see. On phones it runs behind the search bar at the top of the page.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/hero-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="البنر الرئيسي في الجوال"><img lang="en" src="shots/hero-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Main banner on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">صورة طولية بعرض الشاشة، والبنرات تتنقل وحدها مع نقاط التنقل.</span><span lang="en">A tall full-width image; banners rotate on their own, with dots.</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/hero-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="البنر الرئيسي في الكمبيوتر"><img lang="en" src="shots/hero-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Main banner on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">بنر عريض بعرض الصفحة، مع أسهم ونقاط للتنقل.</span><span lang="en">A wide full-width banner, with arrows and dots.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">الجوال</span><span lang="en">Phone</span></th><td><bdi class="px">1242<i>×</i>1430</bdi></td></tr><tr><th><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></th><td><bdi class="px">2832<i>×</i>712</bdi></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">أي عدد من البنرات</span><span lang="en">Any number of banners</span></p>
+        <ul class="opts"><li><span lang="ar">اترك أعلى 300 بكسل وأسفل 300 بكسل من صورة الجوال بلا نص.</span><span lang="en">Keep the top 300 px and bottom 300 px of the phone image free of text.</span></li><li><span lang="ar">اترك 120 بكسل من كل جانب في صورة الكمبيوتر بلا نص، فهناك الأسهم.</span><span lang="en">Keep 120 px on each side of the computer image free of text; the arrows sit there.</span></li><li><span lang="ar">حجم الملف أقل من 350 ك.ب.</span><span lang="en">File size under 350 KB.</span></li></ul>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="wide_short" data-group="banners">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">بنرات</span><span lang="en">Banners</span></span>
+    <h4><span lang="ar">بنر ممتد 3:1</span><span lang="en">Wide banner 3:1</span></h4>
+    <p class="sec__sum"><span lang="ar">بنر عريض منخفض لعرض حملة أو قسم.</span><span lang="en">A low, wide banner for a campaign or a category.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/wide_short-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="بنر ممتد 3:1 في الجوال"><img lang="en" src="shots/wide_short-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Wide banner 3:1 on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">بعرض الشاشة. أكثر من بنر يتحول إلى سلايدر.</span><span lang="en">Full width. More than one banner becomes a slider.</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/wide_short-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="بنر ممتد 3:1 في الكمبيوتر"><img lang="en" src="shots/wide_short-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Wide banner 3:1 on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">بعرض الصفحة. أكثر من بنر يتحول إلى سلايدر بأسهم.</span><span lang="en">Full page width. More than one banner becomes a slider with arrows.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">الجوال</span><span lang="en">Phone</span></th><td><bdi class="px">1242<i>×</i>414</bdi></td></tr><tr><th><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></th><td><bdi class="px">2832<i>×</i>534</bdi></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">أي عدد من البنرات</span><span lang="en">Any number of banners</span></p>
+        
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="wide_medium" data-group="banners">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">بنرات</span><span lang="en">Banners</span></span>
+    <h4><span lang="ar">بنر ممتد 2:1</span><span lang="en">Wide banner 2:1</span></h4>
+    <p class="sec__sum"><span lang="ar">مثل البنر الممتد 3:1 لكنه أطول في الجوال، فيتسع لنص وصورة أكبر.</span><span lang="en">Like the 3:1 banner, but taller on phones, with room for more text and a bigger picture.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/wide_medium-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="بنر ممتد 2:1 في الجوال"><img lang="en" src="shots/wide_medium-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Wide banner 2:1 on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">بعرض الشاشة وبنسبة 2:1. أكثر من بنر يتحول إلى سلايدر.</span><span lang="en">Full width at 2:1. More than one banner becomes a slider.</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/wide_medium-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="بنر ممتد 2:1 في الكمبيوتر"><img lang="en" src="shots/wide_medium-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Wide banner 2:1 on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">بعرض الصفحة. أكثر من بنر يتحول إلى سلايدر بأسهم.</span><span lang="en">Full page width. More than one banner becomes a slider with arrows.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">الجوال</span><span lang="en">Phone</span></th><td><bdi class="px">1242<i>×</i>621</bdi></td></tr><tr><th><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></th><td><bdi class="px">2832<i>×</i>534</bdi></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">أي عدد من البنرات</span><span lang="en">Any number of banners</span></p>
+        
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="strip" data-group="banners">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">بنرات</span><span lang="en">Banners</span></span>
+    <h4><span lang="ar">شريط رفيع</span><span lang="en">Thin strip</span></h4>
+    <p class="sec__sum"><span lang="ar">شريط قصير لرسالة سريعة: شحن مجاني، كود خصم، موعد عرض.</span><span lang="en">A short strip for a quick message: free shipping, a discount code, a sale date.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/strip-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="شريط رفيع في الجوال"><img lang="en" src="shots/strip-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Thin strip on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">شريط بعرض الشاشة. أكثر من شريط يتحول إلى سلايدر.</span><span lang="en">A full-width strip. More than one strip becomes a slider.</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/strip-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="شريط رفيع في الكمبيوتر"><img lang="en" src="shots/strip-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Thin strip on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">لا يظهر في الكمبيوتر إلا إذا فعّله التاجر.</span><span lang="en">Hidden on computers unless the merchant turns it on.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">الجوال (عادي)</span><span lang="en">Phone (normal)</span></th><td><bdi class="px">1242<i>×</i>207</bdi></td></tr><tr><th><span lang="ar">الجوال (رفيع)</span><span lang="en">Phone (thin)</span></th><td><bdi class="px">1242<i>×</i>155</bdi></td></tr><tr><th><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></th><td><bdi class="px">2832<i>×</i>236</bdi></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">أي عدد من الشرائط</span><span lang="en">Any number of strips</span></p>
+        <ul class="opts"><li><span lang="ar">الارتفاع: عادي أو رفيع.</span><span lang="en">Height: normal or thin.</span></li></ul>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="square_pair" data-group="banners">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">بنرات</span><span lang="en">Banners</span></span>
+    <h4><span lang="ar">مربعان متجاوران</span><span lang="en">Square pair</span></h4>
+    <p class="sec__sum"><span lang="ar">بنران جنب بعض، مربعان في الجوال وعريضان في الكمبيوتر.</span><span lang="en">Two banners side by side: squares on phones, wide on computers.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/square_pair-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="مربعان متجاوران في الجوال"><img lang="en" src="shots/square_pair-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Square pair on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">مربعان في الصف. البنرات الزائدة تبدأ صفاً جديداً.</span><span lang="en">Two squares per row. Extra banners start a new row.</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/square_pair-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="مربعان متجاوران في الكمبيوتر"><img lang="en" src="shots/square_pair-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Square pair on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">بنران عريضان في الصف.</span><span lang="en">Two wide banners per row.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">الجوال</span><span lang="en">Phone</span></th><td><bdi class="px">1242<i>×</i>1242</bdi></td></tr><tr><th><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></th><td><bdi class="px">1404<i>×</i>450</bdi></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">أي عدد، بنران في كل صف</span><span lang="en">Any number, two per row</span></p>
+        
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="banner_duo" data-group="banners">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">بنرات</span><span lang="en">Banners</span></span>
+    <h4><span lang="ar">بنران عريضان</span><span lang="en">Two wide banners</span></h4>
+    <p class="sec__sum"><span lang="ar">بنران عريضان بصورة واحدة تصلح للجوال والكمبيوتر.</span><span lang="en">Two wide banners, each with one image for both phone and computer.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/banner_duo-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="بنران عريضان في الجوال"><img lang="en" src="shots/banner_duo-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Two wide banners on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">يختار التاجر: سلايدر، أو فوق بعض، أو جنب بعض (بصور مربعة).</span><span lang="en">The merchant picks: a slider, stacked, or side by side (with square images).</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/banner_duo-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="بنران عريضان في الكمبيوتر"><img lang="en" src="shots/banner_duo-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Two wide banners on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">البنران جنب بعض في صف واحد.</span><span lang="en">Both banners side by side in one row.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">الجهازان</span><span lang="en">Both devices</span></th><td><bdi class="px">1404<i>×</i>450</bdi></td></tr><tr><th><span lang="ar">مربعة لخيار «جنب بعض»</span><span lang="en">Square, for side by side</span></th><td><bdi class="px">1242<i>×</i>1242</bdi></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">بنران</span><span lang="en">Two banners</span></p>
+        <ul class="opts"><li><span lang="ar">سلوك الجوال: سلايدر، فوق بعض، جنب بعض.</span><span lang="en">Phone layout: slider, stacked, side by side.</span></li></ul>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="banner_trio" data-group="banners">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">بنرات</span><span lang="en">Banners</span></span>
+    <h4><span lang="ar">ثلاثة بنرات عريضة</span><span lang="en">Three wide banners</span></h4>
+    <p class="sec__sum"><span lang="ar">ثلاثة بنرات في صف واحد على الكمبيوتر.</span><span lang="en">Three banners in one row on computers.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/banner_trio-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="ثلاثة بنرات عريضة في الجوال"><img lang="en" src="shots/banner_trio-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Three wide banners on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">يختار التاجر: سلايدر، أو فوق بعض، أو جنب بعض (بصور مربعة).</span><span lang="en">The merchant picks: a slider, stacked, or side by side (with square images).</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/banner_trio-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="ثلاثة بنرات عريضة في الكمبيوتر"><img lang="en" src="shots/banner_trio-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Three wide banners on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">ثلاثة بنرات جنب بعض.</span><span lang="en">Three banners side by side.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">الجهازان</span><span lang="en">Both devices</span></th><td><bdi class="px">1404<i>×</i>450</bdi></td></tr><tr><th><span lang="ar">مربعة لخيار «جنب بعض»</span><span lang="en">Square, for side by side</span></th><td><bdi class="px">1242<i>×</i>1242</bdi></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">ثلاثة بنرات</span><span lang="en">Three banners</span></p>
+        <ul class="opts"><li><span lang="ar">سلوك الجوال: سلايدر، فوق بعض، جنب بعض.</span><span lang="en">Phone layout: slider, stacked, side by side.</span></li></ul>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="banner_mosaic" data-group="banners">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">بنرات</span><span lang="en">Banners</span></span>
+    <h4><span lang="ar">بنر كبير وبنران صغيران</span><span lang="en">Big and two small banners</span></h4>
+    <p class="sec__sum"><span lang="ar">بنر كبير للعرض الأهم، وبجانبه بنران أصغر.</span><span lang="en">One big banner for the main offer, with two smaller ones beside it.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/banner_mosaic-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="بنر كبير وبنران صغيران في الجوال"><img lang="en" src="shots/banner_mosaic-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Big and two small banners on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">الكبير أولاً، ثم الصغيران تحته.</span><span lang="en">The big banner first, then the two small ones under it.</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/banner_mosaic-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="بنر كبير وبنران صغيران في الكمبيوتر"><img lang="en" src="shots/banner_mosaic-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Big and two small banners on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">الكبير في جهة، والصغيران فوق بعض بجانبه. التاجر يختار جهة الكبير.</span><span lang="en">The big one on one side, the two small ones stacked beside it. The merchant picks the side.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">البنر الكبير</span><span lang="en">Big banner</span></th><td><bdi class="px">1404<i>×</i>924</bdi></td></tr><tr><th><span lang="ar">البنران الصغيران</span><span lang="en">Small banners</span></th><td><bdi class="px">1404<i>×</i>450</bdi></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">ثلاثة بنرات</span><span lang="en">Three banners</span></p>
+        <ul class="opts"><li><span lang="ar">جهة البنر الكبير في الكمبيوتر: البداية أو النهاية.</span><span lang="en">Side of the big banner on computers: start or end.</span></li></ul>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="banner_cards" data-group="banners">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">بنرات</span><span lang="en">Banners</span></span>
+    <h4><span lang="ar">بطاقات بنر</span><span lang="en">Banner cards</span></h4>
+    <p class="sec__sum"><span lang="ar">بطاقات صغيرة تمرَّر بالإصبع، مثل «منتجات بـ 25 ريال» أو «عروض اليوم».</span><span lang="en">Small swipeable cards, such as “Products under 25” or “Today’s deals”.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/banner_cards-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="بطاقات بنر في الجوال"><img lang="en" src="shots/banner_cards-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Banner cards on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">صف من البطاقات يمرَّر بالإصبع.</span><span lang="en">A row of cards you swipe.</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/banner_cards-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="بطاقات بنر في الكمبيوتر"><img lang="en" src="shots/banner_cards-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Banner cards on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">أربع بطاقات ظاهرة، والباقي بالأسهم.</span><span lang="en">Four cards in view, the rest behind the arrows.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">الجهازان</span><span lang="en">Both devices</span></th><td><bdi class="px">500<i>×</i>281</bdi></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">أي عدد من البطاقات</span><span lang="en">Any number of cards</span></p>
+        
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="tile_row" data-group="banners">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">بنرات</span><span lang="en">Banners</span></span>
+    <h4><span lang="ar">صف مربعات</span><span lang="en">Tile row</span></h4>
+    <p class="sec__sum"><span lang="ar">صف من الصور الصغيرة لأقسام أو ماركات أو عروض.</span><span lang="en">A row of small images for categories, brands or offers.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/tile_row-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="صف مربعات في الجوال"><img lang="en" src="shots/tile_row-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Tile row on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">صف يمرَّر بالإصبع.</span><span lang="en">A row you swipe.</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/tile_row-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="صف مربعات في الكمبيوتر"><img lang="en" src="shots/tile_row-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Tile row on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">ثمانية مربعات أو ستة مستطيلات ظاهرة، والباقي بالأسهم.</span><span lang="en">Eight squares or six rectangles in view, the rest behind the arrows.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">مربع</span><span lang="en">Square</span></th><td><bdi class="px">500<i>×</i>500</bdi></td></tr><tr><th><span lang="ar">مستطيل</span><span lang="en">Rectangle</span></th><td><bdi class="px">500<i>×</i>333</bdi></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">أي عدد من المربعات</span><span lang="en">Any number of tiles</span></p>
+        <ul class="opts"><li><span lang="ar">الشكل: مربع أو مستطيل.</span><span lang="en">Shape: square or rectangle.</span></li></ul>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="circles" data-group="shortcuts">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">اختصارات وتصنيفات</span><span lang="en">Shortcuts &amp; categories</span></span>
+    <h4><span lang="ar">دوائر الاختصارات</span><span lang="en">Shortcut circles</span></h4>
+    <p class="sec__sum"><span lang="ar">دوائر صغيرة بأسماء تحتها، تقود الزائر إلى أهم الأقسام بلمسة.</span><span lang="en">Small circles with names under them that take visitors to key categories in one tap.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/circles-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="دوائر الاختصارات في الجوال"><img lang="en" src="shots/circles-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Shortcut circles on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">صفوف من الدوائر، ويمكن أن تتداخل مع أسفل البنر الرئيسي.</span><span lang="en">Rows of circles that can overlap the bottom of the main banner.</span></figcaption></figure>
+    <div class="sec__side">
+      <div class="dev dev--none"><p><span lang="ar">هذا القسم للجوال فقط، ولا يظهر في الكمبيوتر.</span><span lang="en">This section is for phones only; it does not show on computers.</span></p></div>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">الدائرة</span><span lang="en">Circle</span></th><td><bdi class="px">300<i>×</i>300</bdi></td></tr><tr><th><span lang="ar">مع الاسم داخل الصورة</span><span lang="en">With the name in the image</span></th><td><bdi class="px">300<i>×</i>325</bdi></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">أي عدد من الدوائر</span><span lang="en">Any number of circles</span></p>
+        <ul class="opts"><li><span lang="ar">عدد الدوائر في الصف: من 3 إلى 8.</span><span lang="en">Circles per row: 3 to 8.</span></li><li><span lang="ar">الثيم يكتب الاسم تحت الدائرة، أو يضعه التاجر داخل الصورة.</span><span lang="en">The theme writes the name under the circle, or the merchant puts it in the image.</span></li><li><span lang="ar">التداخل مع البنر الرئيسي: تشغيل أو إيقاف.</span><span lang="en">Overlap with the main banner: on or off.</span></li></ul>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="usage_tiles" data-group="shortcuts">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">اختصارات وتصنيفات</span><span lang="en">Shortcuts &amp; categories</span></span>
+    <h4><span lang="ar">مربعات الأقسام الفرعية</span><span lang="en">Subcategory tiles</span></h4>
+    <p class="sec__sum"><span lang="ar">مربعات للأقسام الفرعية، يضيفها التاجر بيده أو يجلبها الثيم تلقائياً من زد.</span><span lang="en">Tiles for subcategories, added by hand or pulled from Zid automatically.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/usage_tiles-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="مربعات الأقسام الفرعية في الجوال"><img lang="en" src="shots/usage_tiles-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Subcategory tiles on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">صف يمرَّر بالإصبع، والاسم تحت كل مربع.</span><span lang="en">A row you swipe, with the name under each tile.</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/usage_tiles-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="مربعات الأقسام الفرعية في الكمبيوتر"><img lang="en" src="shots/usage_tiles-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Subcategory tiles on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">ثمانية مربعات ظاهرة، والباقي بالأسهم.</span><span lang="en">Eight tiles in view, the rest behind the arrows.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">الجهازان (بلا نص)</span><span lang="en">Both devices (no text)</span></th><td><bdi class="px">500<i>×</i>500</bdi></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">أي عدد من المربعات</span><span lang="en">Any number of tiles</span></p>
+        <ul class="opts"><li><span lang="ar">المصدر: مربعات يضيفها التاجر، أو التصنيفات الفرعية لقسم في زد تلقائياً.</span><span lang="en">Source: tiles the merchant adds, or a Zid category’s subcategories, automatically.</span></li></ul>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="product_slider" data-group="products">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">منتجات</span><span lang="en">Products</span></span>
+    <h4><span lang="ar">سلايدر منتجات</span><span lang="en">Product slider</span></h4>
+    <p class="sec__sum"><span lang="ar">صف من بطاقات المنتجات بالسعر والتقييم وزر الإضافة للسلة.</span><span lang="en">A row of product cards with price, rating and an add-to-cart button.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/product_slider-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="سلايدر منتجات في الجوال"><img lang="en" src="shots/product_slider-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Product slider on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">صف يمرَّر بالإصبع.</span><span lang="en">A row you swipe.</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/product_slider-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="سلايدر منتجات في الكمبيوتر"><img lang="en" src="shots/product_slider-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Product slider on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">سبع بطاقات ظاهرة، والباقي بالأسهم.</span><span lang="en">Seven cards in view, the rest behind the arrows.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">صور المنتجات</span><span lang="en">Product images</span></th><td><span lang="ar">من زد مباشرة</span><span lang="en">From Zid</span></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">التاجر يحدد عدد المنتجات</span><span lang="en">The merchant sets how many products</span></p>
+        <ul class="opts"><li><span lang="ar">المنتجات: العروض، أو وصل حديثاً، أو منتجات قسم، أو منتجات يختارها التاجر.</span><span lang="en">Products: on sale, new arrivals, a category’s products, or products the merchant picks.</span></li><li><span lang="ar">عداد تنازلي على البطاقة حتى نهاية التخفيض.</span><span lang="en">A countdown on the card until the sale ends.</span></li></ul>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="product_grid" data-group="products">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">منتجات</span><span lang="en">Products</span></span>
+    <h4><span lang="ar">شبكة منتجات</span><span lang="en">Product grid</span></h4>
+    <p class="sec__sum"><span lang="ar">بطاقات المنتجات في صفوف وأعمدة ثابتة.</span><span lang="en">Product cards in fixed rows and columns.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/product_grid-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="شبكة منتجات في الجوال"><img lang="en" src="shots/product_grid-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Product grid on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">عمودان.</span><span lang="en">Two columns.</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/product_grid-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="شبكة منتجات في الكمبيوتر"><img lang="en" src="shots/product_grid-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Product grid on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">خمسة أو ستة أو سبعة أعمدة.</span><span lang="en">Five, six or seven columns.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">صور المنتجات</span><span lang="en">Product images</span></th><td><span lang="ar">من زد مباشرة</span><span lang="en">From Zid</span></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">التاجر يحدد عدد الصفوف</span><span lang="en">The merchant sets the number of rows</span></p>
+        <ul class="opts"><li><span lang="ar">المنتجات: العروض، أو وصل حديثاً، أو منتجات قسم، أو منتجات يختارها التاجر.</span><span lang="en">Products: on sale, new arrivals, a category’s products, or products the merchant picks.</span></li><li><span lang="ar">عدد الصفوف، وعدد الأعمدة في الكمبيوتر.</span><span lang="en">Number of rows, and columns on computers.</span></li><li><span lang="ar">عداد تنازلي على البطاقة حتى نهاية التخفيض.</span><span lang="en">A countdown on the card until the sale ends.</span></li></ul>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="sec" id="brand_box" data-group="products">
+  <header class="sec__head">
+    <span class="sec__tag"><span lang="ar">منتجات</span><span lang="en">Products</span></span>
+    <h4><span lang="ar">صندوق ماركة</span><span lang="en">Brand box</span></h4>
+    <p class="sec__sum"><span lang="ar">صندوق ملوّن لماركة واحدة: بنرها، وتبويبات لمنتجاتها، وزر «عرض الكل» إلى صفحتها.</span><span lang="en">A colored box for one brand: its banner, tabs of its products, and “View all” to its page.</span></p>
+  </header>
+  <div class="sec__body">
+    <figure class="dev dev--phone"><div class="phone"><button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/brand_box-m-ar.webp" width="780" height="1688" loading="lazy" decoding="async" alt="صندوق ماركة في الجوال"><img lang="en" src="shots/brand_box-m-en.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Brand box on a phone"></button></div>
+      <figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b> <span lang="ar">البنر، ثم التبويبات، ثم صف منتجات يمرَّر بالإصبع.</span><span lang="en">The banner, then the tabs, then a row of products you swipe.</span></figcaption></figure>
+    <div class="sec__side">
+      <figure class="dev dev--desk"><div class="desk"><span class="desk__bar"><i></i><i></i><i></i></span>
+<button class="zoom" type="button" aria-label="Enlarge"><img lang="ar" src="shots/brand_box-d-ar.webp" width="1536" height="643" loading="lazy" decoding="async" alt="صندوق ماركة في الكمبيوتر"><img lang="en" src="shots/brand_box-d-en.webp" width="1536" height="643" loading="lazy" decoding="async" alt="Brand box on a computer"></button></div>
+<figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b> <span lang="ar">بنر عريض، ثم التبويبات، ثم سبع بطاقات بالأسهم.</span><span lang="en">A wide banner, then the tabs, then seven cards with arrows.</span></figcaption></figure>
+      <div class="spec">
+        <table><caption><span lang="ar">مقاسات الصور بالبكسل</span><span lang="en">Image sizes in pixels</span></caption><tbody><tr><th><span lang="ar">بنر الجوال</span><span lang="en">Phone banner</span></th><td><bdi class="px">1242<i>×</i>414</bdi></td></tr><tr><th><span lang="ar">بنر الكمبيوتر</span><span lang="en">Computer banner</span></th><td><bdi class="px">2832<i>×</i>534</bdi></td></tr></tbody></table>
+        <p class="count"><b><span lang="ar">العناصر</span><span lang="en">Items</span></b> <span lang="ar">التاجر يحدد عدد المنتجات</span><span lang="en">The merchant sets how many products</span></p>
+        <ul class="opts"><li><span lang="ar">حتى أربعة تبويبات، لكل تبويب اسمه ومنتجاته.</span><span lang="en">Up to four tabs, each with its own name and products.</span></li><li><span lang="ar">لون الخلفية، ولون المتجر إذا تُرك فارغاً.</span><span lang="en">Background color; the store color when left empty.</span></li></ul>
+      </div>
+    </div>
+  </div>
+</article></div>
+    </div>
+</section>
+
+<section class="ch" id="identity">
+  <span class="ch__num">04</span>
+  <h2><span lang="ar">الشعار والألوان والخط</span><span lang="en">Logo, colors and font</span></h2>
+  <p class="ch__sum"><span lang="ar">الشعار ولون الهوية يأتيان من لوحة زد مرة واحدة للغتين، وبقية الألوان والخط إعدادات في الثيم.</span><span lang="en">The logo and brand color come from the Zid dashboard, once for both languages; the other colors and the font are theme settings.</span></p>
+
+  <h3><span lang="ar">الشعار</span><span lang="en">The logo</span></h3>
+  <ul>
+    <li><span lang="ar"><b>الشعار الأساسي:</b> يُرفع في لوحة زد (الإعدادات ← الهوية). يظهر في هيدر الكمبيوتر ونافذة العمر وصفحة إتمام الدفع. الأفضل SVG، أو PNG شفاف بعرض 340 بكسل على الأقل.</span><span lang="en"><b>The main logo:</b> uploaded in the Zid dashboard (Settings → Branding). It shows in the computer header, the age gate and the checkout page. Best as SVG, or a transparent PNG at least 340 px wide.</span></li>
+    <li><span lang="ar"><b>شعار بديل لكل لغة:</b> «رأس الصفحة ← الشعار والهيدر ← شعار بديل لهذه اللغة». زد تعطي الثيم شعاراً واحداً للغتين، فإن أردت شعاراً إنجليزياً ارفعه في المحرر الإنجليزي هنا ثم اضغط «نشر» هناك. فارغ = شعار المتجر.</span><span lang="en"><b>An alternative logo per language:</b> “Header → Logo and header → Alternative logo for this language”. Zid gives the theme one logo for both languages, so for an English logo upload it here in the English editor and press “Publish” there. Empty = the store logo.</span></li>
+    <li><span lang="ar"><b>شعار الهيدر المختصر في الكمبيوتر:</b> صورة مربعة اختيارية، مثل أيقونة الشعار وحدها، تظهر في الهيدر الصغير بعد التمرير. فارغ = الشعار نفسه مصغّراً.</span><span lang="en"><b>Compact header logo on computers:</b> an optional square image, such as the logo’s icon alone, shown in the small header after scrolling. Empty = the same logo, smaller.</span></li>
+    <li><span lang="ar"><b>الشعار الموسمي في الشريط السفلي:</b> «أسفل الصفحة ← الشريط السفلي (الجوال)». صورة 200×200 PNG شفاف أو GIF متحرك، تظهر في وسط الشريط السفلي في الجوال، ولها رابط اختياري. المتجر التجريبي يضع فيه شعار علامته «حلا».</span><span lang="en"><b>Seasonal logo in the bottom bar:</b> “Footer → Bottom bar (phone)”. A 200×200 transparent PNG or animated GIF shown in the middle of the phone’s bottom bar, with an optional link. The demo store puts its private label “Hala” there.</span></li>
+  </ul>
+  <div class="note"><b><span lang="ar">لا شعار في هيدر الجوال</span><span lang="en">No logo in the phone header</span></b><span lang="ar">هيدر الجوال خانة بحث وزر لغة فقط، لتبقى الشاشة للبنر الرئيسي. الشعار في الجوال يظهر في الشريط السفلي (الشعار الموسمي) ونافذة العمر.</span><span lang="en">The phone header is only a search field and a language button, so the screen belongs to the main banner. On phones the logo appears in the bottom bar (seasonal logo) and the age gate.</span></div>
+
+  <h3><span lang="ar">الألوان</span><span lang="en">Colors</span></h3>
+  <p class="path"><span><span lang="ar">إعدادات الثيم</span><span lang="en">Theme settings</span></span><i>←</i><span><span lang="ar">الألوان</span><span lang="en">Colors</span></span></p>
+  <div class="tablewrap"><table>
+    <thead><tr><th><span lang="ar">الإعداد</span><span lang="en">Setting</span></th><th><span lang="ar">أين يظهر</span><span lang="en">Where it shows</span></th><th><span lang="ar">الافتراضي</span><span lang="en">Default</span></th></tr></thead>
+    <tbody>
+      <tr><td class="k"><span lang="ar">لون الهوية (من لوحة زد)</span><span lang="en">Brand color (Zid dashboard)</span></td><td><span lang="ar">الشريط العلوي، والأزرار، والعنصر النشط في الشريط السفلي، و«عرض الكل»، وشريط الشحن المجاني، و«تحتاج مساعدة؟»، والنقطة الحالية في السلايدر.</span><span lang="en">Top bar, buttons, the active bottom-bar item, “View all”, the free-shipping bar, “Need help?”, and the current slider dot.</span></td><td><span lang="ar">الإعدادات ← الهوية؛ إن فرغ: أسود محايد</span><span lang="en">Settings → Branding; if empty: neutral black</span></td></tr>
+      <tr><td class="k"><span lang="ar">أرضية الصفحة</span><span lang="en">Page background</span></td><td><span lang="ar">خلفية كل الصفحات</span><span lang="en">The background of every page</span></td><td><code>#F7F7F7</code></td></tr>
+      <tr><td class="k"><span lang="ar">البطاقات والهيدر</span><span lang="en">Cards and header</span></td><td><span lang="ar">بطاقات المنتجات، والهيدر، والنوافذ، وصفحة المنتج</span><span lang="en">Product cards, header, sheets and the product page</span></td><td><code>#FFFFFF</code></td></tr>
+      <tr><td class="k"><span lang="ar">النص الأساسي</span><span lang="en">Main text</span></td><td><span lang="ar">الأسماء والعناوين والأسعار بلا خصم</span><span lang="en">Names, titles and undiscounted prices</span></td><td><code>#111111</code></td></tr>
+      <tr><td class="k"><span lang="ar">النص الثانوي</span><span lang="en">Secondary text</span></td><td><span lang="ar">الماركة في البطاقة، والأسطر الرمادية، وأسماء الشريط السفلي</span><span lang="en">The brand on cards, grey lines and bottom-bar labels</span></td><td><code>#6B6B6B</code></td></tr>
+      <tr><td class="k"><span lang="ar">لون البيع</span><span lang="en">Sale color</span></td><td><span lang="ar">السعر بعد الخصم، وكبسولة الخصم، والعداد، ودائرة عدد السلة، و«وفّرت»</span><span lang="en">The discounted price, the discount pill, the countdown, the cart count badge and “You saved”</span></td><td><code>#C0392B</code></td></tr>
+      <tr><td class="k"><span lang="ar">الأزرار الرئيسية</span><span lang="en">Main buttons</span></td><td><span lang="ar">«أضف للسلة»، و«إتمام الطلب»، و«تطبيق»</span><span lang="en">“Add to cart”, “Complete order”, “Apply”</span></td><td><span lang="ar">فارغ = لون الهوية</span><span lang="en">Empty = the brand color</span></td></tr>
+    </tbody>
+  </table></div>
+  <p><span lang="ar">لهيئة داكنة: أرضية داكنة، وبطاقات أغمق أو أفتح منها قليلاً، ونص فاتح، ولون بيع أفتح من الأحمر الافتراضي ليُقرأ على الداكن. الألوان الستة لكل لغة قيمها، فاضبطها في المحررين إن غيّرتها بيدك.</span><span lang="en">For a dark look: a dark page, cards slightly darker or lighter than it, light text, and a sale color lighter than the default red so it reads on dark. The six colors have a value per language, so set them in both editors if you change them by hand.</span></p>
+
+  <h3><span lang="ar">الخط</span><span lang="en">Font</span></h3>
+  <p><span lang="ar">«إعدادات الثيم ← الخط ← خط الموقع»: 20 خطاً من Google Fonts كلها تدعم العربية والإنجليزية معاً، والافتراضي IBM Plex Sans Arabic. ولكل لغة اختيارها، فيمكن أن يكون خط الصفحة الإنجليزية مختلفاً. الخطوط: IBM Plex Sans Arabic، وNoto Kufi Arabic، وNoto Sans Arabic، وCairo، وTajawal، وAlmarai، وReadex Pro، وRubik، وAlexandria، وVazirmatn، وBeiruti، وChanga، وEl Messiri، وBaloo Bhaijaan 2، وMada، وHarmattan، وReem Kufi، وNoto Naskh Arabic، وAmiri، وMarkazi Text.</span><span lang="en">“Theme settings → Font → Site font”: 20 Google Fonts, all supporting Arabic and English together; the default is IBM Plex Sans Arabic. Each language has its own choice, so the English page can use a different font. The fonts: IBM Plex Sans Arabic, Noto Kufi Arabic, Noto Sans Arabic, Cairo, Tajawal, Almarai, Readex Pro, Rubik, Alexandria, Vazirmatn, Beiruti, Changa, El Messiri, Baloo Bhaijaan 2, Mada, Harmattan, Reem Kufi, Noto Naskh Arabic, Amiri and Markazi Text.</span></p>
+
+  <h3><span lang="ar">رمز العملة</span><span lang="en">Currency symbol</span></h3>
+  <p><span lang="ar">«بطاقة المنتج ← رمز العملة للريال السعودي»: كما تكتبه زد، أو رمز الريال الجديد، أو «ر.س». يسري على كل الأسعار في المتجر. أما عملات الدول الأخرى فتبقى بصيغة زد.</span><span lang="en">“Product card → Currency symbol for the Saudi riyal”: as Zid writes it, the new riyal symbol, or “SAR”. It applies to every price in the store. Other countries’ currencies keep Zid’s format.</span></p>
+</section>
+
+<section class="ch" id="menus">
+  <span class="ch__num">05</span>
+  <h2><span lang="ar">القوائم والأقسام</span><span lang="en">Menus and categories</span></h2>
+  <p class="ch__sum"><span lang="ar">القائمة الرئيسية في لوحة زد هي مصدر واحد لثلاثة أماكن: صفحة «الأقسام» في الجوال، وصف الأقسام وقائمة «جميع الأقسام» في هيدر الكمبيوتر، و«أشهر الأقسام» في الفوتر.</span><span lang="en">The main menu in the Zid dashboard is the one source for three places: the “Categories” page on phones, the category row and the “All categories” menu in the computer header, and “Top categories” in the footer.</span></p>
+
+  <div class="shots">
+    <figure class="shot shot--phone"><div class="shot__frame"><img src="demo/categories-m-ar.webp" alt="صفحة الأقسام في الجوال" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/categories-m-ar.webp</code></div></div><figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b><span lang="ar">صفحة «الأقسام»: عمود جانبي ولوحة بالفروع.</span><span lang="en">The “Categories” page: a side column and a panel of subcategories.</span></figcaption></figure>
+    <figure class="shot shot--desk"><div class="shot__frame"><img src="demo/megamenu-d-ar.webp" alt="قائمة جميع الأقسام في الكمبيوتر" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/megamenu-d-ar.webp</code></div></div><figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b><span lang="ar">قائمة «جميع الأقسام» المنسدلة: عمود الأقسام، والفروع في ثلاثة أعمدة، وغلاف القسم.</span><span lang="en">The “All categories” drop-down: the category column, subcategories in three columns, and the category cover.</span></figcaption></figure>
+  </div>
+
+  <h3><span lang="ar">ضبط القائمة الرئيسية</span><span lang="en">Setting up the main menu</span></h3>
+  <p class="path"><span><span lang="ar">لوحة زد</span><span lang="en">Zid dashboard</span></span><i>←</i><span><span lang="ar">المتجر الإلكتروني</span><span lang="en">Online store</span></span><i>←</i><span><span lang="ar">القائمة الرئيسية</span><span lang="en">Main menu</span></span></p>
+  <ul>
+    <li><span lang="ar"><b>القائمة التلقائية</b> (كل التصنيفات المنشورة بترتيب زد) تعمل مباشرة: الثيم يقرأ منها اسم كل قسم وصورته وغلافه وفروعه.</span><span lang="en"><b>The automatic menu</b> (every published category in Zid’s order) works at once: the theme reads each category’s name, image, cover and subcategories from it.</span></li>
+    <li><span lang="ar"><b>القائمة اليدوية</b> («العناصر المخصصة»): اختر أقسامك الحقيقية بترتيبك، وشغّل تحت كل قسم الفروع التي تريدها ظاهرة. يأخذ الثيم أسماء العناصر من القائمة والصور من التصنيفات نفسها. لا تضع فيها التصنيفات المساعدة (مثل «الأكثر مبيعاً» أو «بـ25 وأقل») إن لم ترد أن تظهر كأقسام.</span><span lang="en"><b>The manual menu</b> (“Custom items”): pick your real categories in your order and switch on, under each, the subcategories you want visible. The theme takes item names from the menu and pictures from the categories themselves. Keep helper categories (such as “Best sellers” or “Under 25”) out of it if you do not want them shown as sections.</span></li>
+    <li><span lang="ar">يُستبعد من القائمة تلقائياً: «الصفحة الرئيسية» و«جميع التصنيفات». ويبقى «جميع المنتجات» ورابط «الماركات» إن وضعتهما.</span><span lang="en">Excluded automatically: “Home” and “All categories”. “All products” and a “Brands” link stay if you add them.</span></li>
+    <li><span lang="ar"><b>قسم حُذف أو أُخفي</b> بعد بنائك القائمة اليدوية يسقط من قائمة الكمبيوتر وحده عند تحميل الصفحة، فلا يظهر رابط ميت.</span><span lang="en"><b>A category deleted or hidden</b> after you built the manual menu drops out of the computer menu by itself on page load, so no dead link shows.</span></li>
+  </ul>
+
+  <h3><span lang="ar">صفحة «الأقسام» في الجوال</span><span lang="en">The “Categories” page on phones</span></h3>
+  <p><span lang="ar">تُفتح من الشريط السفلي. عمود جانبي ثابت فيه الأقسام بترتيب القائمة، ولوحة بجانبه فيها غلاف القسم (إن رفعته) وبطاقة باسمه و«عرض الكل» وفروعه دوائر ثلاثاً في الصف. القسم الذي لا فروع له يفتح صفحته مباشرة. وآخر عنصر دائماً «عن المتجر»: روابط الشحن والدفع، والأسئلة الشائعة، والصفحات القانونية، والمدونة، والروابط الإضافية، ثم «بيانات المتجر» (الرقم الضريبي وشهادته، والمركز السعودي للأعمال، والعنوان، وطرق الدفع، وطرق الشحن، وحسابات التواصل). هذه الصفحة تحل محل الفوتر في الجوال.</span><span lang="en">Opened from the bottom bar. A fixed side column lists the categories in menu order, and a panel beside it shows the category cover (if uploaded), a card with its name and “View all”, and its subcategories as circles, three per row. A category without subcategories opens its page directly. The last item is always “About the store”: links to shipping and payment, FAQs, legal pages, the blog and the extra links, then “Store details” (VAT number and certificate, Saudi Business Center, address, payment methods, shipping options and social accounts). This page replaces the footer on phones.</span></p>
+
+  <h3><span lang="ar">صور الأقسام وأغلفتها</span><span lang="en">Category images and covers</span></h3>
+  <ul>
+    <li><span lang="ar"><b>صورة التصنيف</b> (في صفحة التصنيف بلوحة زد): تظهر دائرةً في صفحة الأقسام، وأيقونة 20 بكسل في قائمة الكمبيوتر، وفي «مربعات الأقسام الفرعية» التلقائية. منتج واحد في وسط الصورة على أبيض، 500×500.</span><span lang="en"><b>Category image</b> (on the category page in the Zid dashboard): shows as a circle on the categories page, a 20 px icon in the computer menu, and in automatic “Subcategory tiles”. One product centered on white, 500×500.</span></li>
+    <li><span lang="ar"><b>غلاف التصنيف</b> («الصورة الخلفية للتصنيف»): 900×300، يظهر بانراً أعلى لوحة القسم في الجوال وفي قائمة الكمبيوتر. ارفعه لكل قسم رئيسي له فروع.</span><span lang="en"><b>Category cover</b> (“Category background image”): 900×300, shown as a banner above the category’s panel on phones and in the computer menu. Upload one for every main category that has subcategories.</span></li>
+    <li><span lang="ar">الصور الجديدة تصل الزوار خلال نحو 25 دقيقة من رفعها.</span><span lang="en">New pictures reach visitors about 25 minutes after upload.</span></li>
+  </ul>
+</section>
+
+<section class="ch" id="header">
+  <span class="ch__num">06</span>
+  <h2><span lang="ar">الهيدر والشريط العلوي والبحث</span><span lang="en">Header, top bar and search</span></h2>
+  <p class="ch__sum"><span lang="ar">ثلاث مجموعات في «رأس الصفحة»، ولكل لغة قيمها: اكتبها في المحرر العربي ثم الإنجليزي.</span><span lang="en">Three groups under “Header”, each with a value per language: fill them in the Arabic editor, then the English one.</span></p>
+
+  <h3><span lang="ar">الشريط العلوي</span><span lang="en">The top bar</span></h3>
+  <p><span lang="ar">شريط بلون الهوية أعلى كل صفحة، بسطر واحد قصير، يختفي عند التمرير. الضغط عليه يفتح نافذة بالشروط. مثال المتجر التجريبي: «شحن مجاني فوق 150 ريال بكود 150» وفي الشروط التفاصيل والاستثناءات.</span><span lang="en">A bar in the brand color at the top of every page, with one short line, hidden on scroll. Tapping it opens a sheet with the terms. The demo store’s example: “Free shipping over SAR 150 with code 150”, with the details and exclusions in the terms.</span></p>
+  <div class="tablewrap"><table>
+    <thead><tr><th><span lang="ar">الإعداد</span><span lang="en">Setting</span></th><th><span lang="ar">ملاحظة</span><span lang="en">Note</span></th></tr></thead>
+    <tbody>
+      <tr><td class="k"><span lang="ar">إظهار الشريط العلوي</span><span lang="en">Show the top bar</span></td><td></td></tr>
+      <tr><td class="k"><span lang="ar">نص الشريط</span><span lang="en">Bar text</span></td><td><span lang="ar">سطر واحد قصير يتسع لشاشة 360. اكتبه بالإنجليزية في المحرر الإنجليزي وإلا لا يظهر الشريط للزائر الإنجليزي.</span><span lang="en">One short line that fits a 360 px screen. Write it in the English editor too, or the bar will not show to English visitors.</span></td></tr>
+      <tr><td class="k"><span lang="ar">نص الشروط في النافذة السفلية</span><span lang="en">Terms text in the bottom sheet</span></td><td><span lang="ar">اختياري. بدونه لا يفتح الضغط على الشريط شيئاً.</span><span lang="en">Optional. Without it, tapping the bar opens nothing.</span></td></tr>
+      <tr><td class="k"><span lang="ar">لون الخلفية</span><span lang="en">Background color</span></td><td><span lang="ar">فارغ = لون الهوية</span><span lang="en">Empty = the brand color</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span lang="ar">البحث</span><span lang="en">Search</span></h3>
+  <div class="shots">
+    <figure class="shot shot--phone"><div class="shot__frame"><img src="demo/search-m-ar.webp" alt="طبقة البحث في الجوال" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/search-m-ar.webp</code></div></div><figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b><span lang="ar">طبقة البحث أثناء الكتابة: الأقسام المطابقة، ثم المنتجات بالصورة والسعر، ثم «عرض كل النتائج».</span><span lang="en">The search layer while typing: matching categories, then products with picture and price, then “See all results”.</span></figcaption></figure>
+    <figure class="shot shot--desk"><div class="shot__frame"><img src="demo/search-d-ar.webp" alt="لوحة البحث في الكمبيوتر" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/search-d-ar.webp</code></div></div><figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b><span lang="ar">لوحة البحث تحت خانة الهيدر مع الاقتراحات أثناء الكتابة.</span><span lang="en">The search panel under the header field, with suggestions while typing.</span></figcaption></figure>
+  </div>
+  <p><span lang="ar">في الجوال تفتح خانة الرئيسية وزر البحث في الصفحات الداخلية طبقة بملء الشاشة، وفي الكمبيوتر تفتح لوحة تحت خانة الهيدر. قبل الكتابة: «آخر عمليات البحث» (تُحفظ في جهاز الزائر وحده)، و«الأكثر بحثاً»، و«ماركات مميزة». من الحرف الثاني: الأقسام المطابقة، والماركات المميزة المطابقة، وحتى 5 منتجات بالصورة والسعر، وزر «عرض كل النتائج». زد تبحث في اسم المنتج بالعربي والإنجليزي ورمز SKU، ولا تبحث باسم الماركة، لذلك الماركات تأتي من قائمتك في المحرر.</span><span lang="en">On phones the home field and the search button on inner pages open a full-screen layer; on computers a panel opens under the header field. Before typing: “Recent searches” (saved on the visitor’s device only), “Popular searches” and “Featured brands”. From the second letter: matching categories, matching featured brands, up to 5 products with image and price, and a “See all results” button. Zid searches product names in Arabic and English and the SKU, but not brand names, so brands come from your list in the editor.</span></p>
+  <div class="tablewrap"><table>
+    <thead><tr><th><span lang="ar">الإعداد</span><span lang="en">Setting</span></th><th><span lang="ar">ملاحظة</span><span lang="en">Note</span></th></tr></thead>
+    <tbody>
+      <tr><td class="k"><span lang="ar">نص خانة البحث</span><span lang="en">Search field text</span></td><td><span lang="ar">فارغ = «ابحث عن منتج أو ماركة». في الكمبيوتر تتبدل كلمات «الأكثر بحثاً» داخل الخانة كل 3 ثوانٍ.</span><span lang="en">Empty = “Search for a product or brand”. On computers the “Popular searches” words rotate inside the field every 3 seconds.</span></td></tr>
+      <tr><td class="k"><span lang="ar">الأكثر بحثاً: كلمة في كل سطر</span><span lang="en">Popular searches: one per line</span></td><td><span lang="ar">حتى 12 كلمة. تظهر أيضاً في صفحة «لا نتائج».</span><span lang="en">Up to 12 words. They also show on the “No results” page.</span></td></tr>
+      <tr><td class="k"><span lang="ar">ماركة مميزة 1–8: الشعار والاسم والرابط</span><span lang="en">Featured brand 1–8: logo, name and link</span></td><td><span lang="ar">شعار بخلفية شفافة، مربع أو عريض، 400 بكسل على الأقل. الرابط صفحة الماركة <code>/brands/…</code>.</span><span lang="en">A transparent logo, square or wide, at least 400 px. The link is the brand page <code>/brands/…</code>.</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span lang="ar">الشعار والهيدر</span><span lang="en">Logo and header</span></h3>
+  <ul>
+    <li><span lang="ar"><b>عبارة الثقة في هيدر الكمبيوتر:</b> سطر بأيقونة في طرف الصف الأول، مثل «موقع التموين الأول في الرياض». فارغ = بلا عبارة. راجعها قانونياً إن كانت ادعاءً.</span><span lang="en"><b>Trust tagline in the computer header:</b> a line with an icon at the end of the first row, such as “Riyadh’s first grocery site”. Empty = no tagline. Have it checked legally if it is a claim.</span></li>
+    <li><span lang="ar"><b>إظهار عدد منتجات السلة:</b> الدائرة الحمراء على أيقونة السلة، بعدد القطع لا الأصناف.</span><span lang="en"><b>Show the cart count:</b> the red badge on the cart icon, counting units, not lines.</span></li>
+    <li><span lang="ar"><b>هيدر الكمبيوتر:</b> صفان في أعلى الصفحة (الشعار والبحث وعبارة الثقة، ثم «جميع الأقسام» والأقسام و«الماركات» واللغة وحسابي والسلة)، ويصيران صفاً واحداً ثابتاً بعد التمرير. الأقسام التي لا تتسع تبقى في «جميع الأقسام».</span><span lang="en"><b>The computer header:</b> two rows at the top of the page (logo, search and tagline, then “All categories”, the categories, “Brands”, language, account and cart) that collapse into one fixed row after scrolling. Categories that do not fit stay inside “All categories”.</span></li>
+    <li><span lang="ar"><b>زر اللغة والكرة الأرضية:</b> في الجوال زر «EN/ع» بجانب البحث يبدّل اللغة ويبقي الزائر في صفحته. وإن كان متجرك يبيع لأكثر من دولة ظهر بجانبه زر الكرة الأرضية يفتح نافذة المنطقة من زد. في الكمبيوتر الاثنان في قائمة «AR» المنسدلة.</span><span lang="en"><b>Language button and globe:</b> on phones an “EN/ع” button beside the search switches the language and keeps the visitor on the same page. If your store sells to more than one country, a globe button beside it opens Zid’s region window. On computers both sit in the “AR” drop-down.</span></li>
+  </ul>
+</section>
+
+<section class="ch" id="product">
+  <span class="ch__num">07</span>
+  <h2><span lang="ar">بطاقة المنتج وصفحة المنتج</span><span lang="en">Product card and product page</span></h2>
+  <p class="ch__sum"><span lang="ar">بطاقة واحدة في كل الموقع، تضبطها مرة واحدة. وصفحة منتج على هيكل المتاجر الكبيرة، تعرض ما تعطيه زد وتخفي ما لا تعطيه بلا فراغ.</span><span lang="en">One card across the whole site, set once. A product page in the style of the big stores: it shows what Zid provides and hides what it does not, with no gaps.</span></p>
+
+  <div class="shots">
+    <figure class="shot shot--phone"><div class="shot__frame"><img src="demo/product-m-ar.webp" alt="صفحة المنتج في الجوال" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/product-m-ar.webp</code></div></div><figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b><span lang="ar">الصور، والاسم، والسعر، والخيارات، والزر الثابت فوق الشريط السفلي.</span><span lang="en">Pictures, name, price, options, and the fixed button above the bottom bar.</span></figcaption></figure>
+    <figure class="shot shot--desk"><div class="shot__frame"><img src="demo/product-d-ar.webp" alt="صفحة المنتج في الكمبيوتر" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/product-d-ar.webp</code></div></div><figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b><span lang="ar">بطاقة بيضاء بعمودين: المصغرات والصورة الكبيرة، ثم عمود الشراء.</span><span lang="en">A white two-column card: thumbnails and the main picture, then the buy column.</span></figcaption></figure>
+  </div>
+
+  <h3><span lang="ar">بطاقة المنتج</span><span lang="en">The product card</span></h3>
+  <p><span lang="ar">من أعلى: شارة واحدة في الزاوية والقلب في الجهة الأخرى، ثم الصورة المربعة وفي زاويتها زر الإضافة السريعة، ثم التقييم (نجمة ورقم وعدد التقييمات)، والماركة، واسم المنتج في سطرين، والسعر القديم مشطوباً، والسعر بلون البيع مع كبسولة «-25%». المنتج النافد: صورة باهتة وشارة «نفدت الكمية» وزر «أبلغني» يطلب بريد العميل.</span><span lang="en">From the top: one badge in the corner and the heart on the other side, then the square picture with the quick-add button in its corner, then the rating (star, number and count), the brand, the product name on two lines, the old price struck through, and the price in the sale color with a “-25%” pill. A sold-out product: a faded picture, a “Sold out” badge and a “Notify me” button that asks for the customer’s email.</span></p>
+  <p class="path"><span><span lang="ar">إعدادات الثيم</span><span lang="en">Theme settings</span></span><i>←</i><span><span lang="ar">بطاقة المنتج</span><span lang="en">Product card</span></span></p>
+  <div class="tablewrap"><table>
+    <thead><tr><th><span lang="ar">الإعداد</span><span lang="en">Setting</span></th><th><span lang="ar">ما يفعله</span><span lang="en">What it does</span></th></tr></thead>
+    <tbody>
+      <tr><td class="k"><span lang="ar">إظهار التقييم / الماركة / السعر القديم / كبسولة الخصم / القلب / زر الإضافة السريعة</span><span lang="en">Show rating / brand / old price / discount pill / heart / quick-add button</span></td><td><span lang="ar">ستة مفاتيح تشغيل وإيقاف لمكونات البطاقة.</span><span lang="en">Six on/off switches for the card’s parts.</span></td></tr>
+      <tr><td class="k"><span lang="ar">أسطر اسم المنتج</span><span lang="en">Product name lines</span></td><td><span lang="ar">سطر واحد أو سطران (الافتراضي).</span><span lang="en">One line or two (default).</span></td></tr>
+      <tr><td class="k"><span lang="ar">رمز العملة للريال السعودي</span><span lang="en">Currency symbol for the riyal</span></td><td><span lang="ar">الفصل 4.</span><span lang="en">Chapter 4.</span></td></tr>
+      <tr><td class="k"><span lang="ar">إخفاء المنتج النافد من أقسام الرئيسية</span><span lang="en">Hide sold-out products from home sections</span></td><td><span lang="ar">يخفيها من السلايدرات والشبكات في الرئيسية فقط.</span><span lang="en">Removes them from home sliders and grids only.</span></td></tr>
+      <tr><td class="k"><span lang="ar">شارة «جديد»: أيام بعد إضافة المنتج</span><span lang="en">“New” badge: days after the product is added</span></td><td><span lang="ar">مثلاً 30: كل منتج أُضيف خلال 30 يوماً يحمل شارة «جديد». 0 = بلا شارة.</span><span lang="en">For example 30: every product added in the last 30 days carries a “New” badge. 0 = no badge.</span></td></tr>
+      <tr><td class="k"><span lang="ar">الماركات الخاصة</span><span lang="en">Own brands</span></td><td><span lang="ar">أسماء علاماتك الخاصة مفصولة بفاصلة، كما هي في زد. منتجاتها تحمل علامة «علامة خاصة» بجانب اسم الماركة في البطاقة وصفحة المنتج. المتجر التجريبي: «حلا».</span><span lang="en">Your private labels, comma-separated, as named in Zid. Their products carry an “Own brand” mark beside the brand name on the card and the product page. Demo store: “Hala”.</span></td></tr>
+      <tr><td class="k"><span lang="ar">السطر الرمادي في بطاقة الماركة</span><span lang="en">The grey line in the brand card</span></td><td><span lang="ar">يظهر تحت اسم الماركة في صفحة المنتج. فارغ = «منتجات أصلية».</span><span lang="en">Shown under the brand name on the product page. Empty = “Genuine products”.</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h4><span lang="ar">الشارات وأولويتها</span><span lang="en">Badges and their priority</span></h4>
+  <p><span lang="ar">شارة واحدة فقط في الزاوية، بهذه الأولوية: «نفدت الكمية»، ثم الحجز المسبق، ثم العداد، ثم شارة المنتج التي تختارها في زد («يشمل هدية»، «2+1»، «الأكثر مبيعاً»…)، ثم «جديد». شارة المنتج تُضبط في صفحة المنتج بلوحة زد (Product image label)، شارة واحدة لكل منتج.</span><span lang="en">Only one badge in the corner, in this priority: “Sold out”, then preorder, then the countdown, then the product label you pick in Zid (“Gift included”, “2+1”, “Best seller”…), then “New”. The product label is set on the product page in the Zid dashboard (Product image label), one per product.</span></p>
+
+  <h4><span lang="ar">الإضافة السريعة</span><span lang="en">Quick add</span></h4>
+  <p><span lang="ar">منتج بسيط: زر (+) يضيفه فوراً ويحدّث عدد السلة. منتج بخيارات: يفتح نافذة سفلية صغيرة لاختيار الخيار، والسعر يتغير مع كل اختيار. منتج فيه حقل إجباري يُفتح في صفحته.</span><span lang="en">A simple product: the (+) button adds it at once and updates the cart count. A product with options: a small bottom sheet opens to pick the option, and the price changes with each choice. A product with a required field opens its page.</span></p>
+
+  <h3><span lang="ar">صفحة المنتج</span><span lang="en">The product page</span></h3>
+  <p><span lang="ar">من أعلى لأسفل في الجوال: هيدر بسهم رجوع وقلب ومشاركة؛ الصور بعرض الشاشة تتقلب بالسحب وتُكبَّر بالضغط؛ الاسم؛ التقييم و«تم بيع 120» إن فعّلت عدد المبيعات؛ السعر والقديم والكبسولة و«شامل الضريبة» أو «معفى من الضريبة»؛ العداد؛ «بقي 3 فقط» إن فعّلت تنبيه الكمية؛ الخيارات كبسولاتٍ أو ألواناً أو صوراً؛ Apple Pay وصناديق زد (خصومات البنوك، والتقسيط، ونقاط الولاء) لمن يفعّلها؛ بطاقة الماركة؛ «اشترِها معاً» لعرض الحزمة؛ «الوصف» و«المواصفات» و«أسئلة وأجوبة» صفوفاً تنفتح؛ التقييمات بأول 3 مراجعات و«اكتب تقييمك» و«كل التقييمات»؛ «منتجات مشابهة»؛ ثم شريط الثقة و«تحتاج مساعدة؟». وفوق الشريط السفلي زر ثابت: عداد الكمية و«أضف للسلة» (أو «احجز مسبقاً» أو «أبلغني عند توفره»).</span><span lang="en">Top to bottom on phones: a header with back, heart and share; full-width pictures that swipe and zoom; the name; the rating and “120 sold” if you enable sales counts; the price, old price, pill and “Tax included” or “Tax free”; the countdown; “Only 3 left” if you enable the low-stock alert; options as chips, color squares or images; Apple Pay and Zid’s boxes (bank discounts, installments, loyalty points) for stores that enable them; the brand card; “Buy together” for a bundle offer; “Description”, “Specifications” and “Questions & answers” as expandable rows; reviews with the first 3 and “Write a review” and “All reviews”; “Similar products”; then the trust strip and “Need help?”. Above the bottom bar a fixed button: the quantity stepper and “Add to cart” (or “Preorder” or “Notify me when available”).</span></p>
+  <p><span lang="ar">في الكمبيوتر: مسار الصفحة، ثم بطاقة بيضاء بعمودين، ثم «منتجات مشابهة» سلايدراً، ثم «مراجعات العملاء» مع «عرض المزيد»، وشريط شراء عائم يظهر حين يختفي الزر الأصلي.</span><span lang="en">On computers: the breadcrumb, then a white two-column card, then “Similar products” as a slider, then “Customer reviews” with “Show more”, and a floating buy bar that appears when the original button scrolls away.</span></p>
+  <div class="tablewrap"><table>
+    <thead><tr><th><span lang="ar">يظهر في صفحة المنتج</span><span lang="en">Shown on the product page</span></th><th><span lang="ar">يُضبط في</span><span lang="en">Set in</span></th></tr></thead>
+    <tbody>
+      <tr><td><span lang="ar">«المواصفات» (المقاس، والنكهة…) وفلاتر الأقسام</span><span lang="en">“Specifications” (size, flavor…) and category filters</span></td><td><span lang="ar">لوحة زد ← المنتجات ← معايير التصفية (فعّلها واربطها بالمنتجات). الوزن يظهر آخر صف إن كتبته.</span><span lang="en">Zid dashboard → Products → Filter criteria (enable and link to products). Weight shows as the last row if entered.</span></td></tr>
+      <tr><td><span lang="ar">التقييمات، و«أسئلة وأجوبة»</span><span lang="en">Reviews and “Questions & answers”</span></td><td><span lang="ar">لوحة زد ← العملاء. كل تقييم جديد يحتاج «نشر» منك، وكل سؤال يظهر بعد إجابتك.</span><span lang="en">Zid dashboard → Customers. Each new review needs your “Publish”, and each question shows after your answer.</span></td></tr>
+      <tr><td><span lang="ar">«بقي 3 فقط»، و«تم بيع 120»، و«منتجات مشابهة» وعددها</span><span lang="en">“Only 3 left”, “120 sold”, and “Similar products” with their count</span></td><td><span lang="ar">لوحة زد ← خصائص الطلبات والمنتجات.</span><span lang="en">Zid dashboard → Order and product settings.</span></td></tr>
+      <tr><td><span lang="ar">العداد، وشارة التخفيض</span><span lang="en">The countdown and the sale badge</span></td><td><span lang="ar">فترة التخفيض (البداية والنهاية) في صفحة المنتج بلوحة زد.</span><span lang="en">The sale period (start and end) on the product page in the Zid dashboard.</span></td></tr>
+      <tr><td><span lang="ar">«اشترِها معاً»</span><span lang="en">“Buy together”</span></td><td><span lang="ar">عروض الحزم في لوحة زد؛ يظهر فقط للمنتج الداخل في حزمة.</span><span lang="en">Bundle offers in the Zid dashboard; shown only for a product inside a bundle.</span></td></tr>
+      <tr><td><span lang="ar">«شامل الضريبة» / «معفى من الضريبة»</span><span lang="en">“Tax included” / “Tax free”</span></td><td><span lang="ar">إعداد الضريبة في زد، وخضوع المنتج لها.</span><span lang="en">The tax setting in Zid, and whether the product is taxable.</span></td></tr>
+      <tr><td><span lang="ar">صندوق التقسيط، وخصومات البنوك، ونقاط الولاء، والإهداء، والحجز المسبق</span><span lang="en">Installments box, bank discounts, loyalty points, gifting, preorder</span></td><td><span lang="ar">كلها من لوحة زد؛ ما لم تفعّله لا يأخذ مكاناً.</span><span lang="en">All from the Zid dashboard; whatever you do not enable takes no space.</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><b><span lang="ar">صور المنتجات</span><span lang="en">Product pictures</span></b><span lang="ar">مربعة 1200×1200 على خلفية بيضاء، والمنتج يملأ نحو 80% من الإطار بالمسافة نفسها حوله في كل الصور. هذا ما يجعل الشبكات والسلايدرات تبدو مرتبة.</span><span lang="en">Square 1200×1200 on a white background, the product filling about 80% of the frame with the same margin in every picture. This is what makes grids and sliders look tidy.</span></div>
+</section>
+
+<section class="ch" id="listing">
+  <span class="ch__num">08</span>
+  <h2><span lang="ar">صفحات التصنيف والماركات والبحث</span><span lang="en">Category, brand and search pages</span></h2>
+  <p class="ch__sum"><span lang="ar">قالب قوائم واحد لصفحة التصنيف وصفحة الماركة ونتائج البحث و«جميع المنتجات»: شرائح فلاتر في الجوال، وعمود فلاتر في الكمبيوتر، و«عرض المزيد» بلا إعادة تحميل.</span><span lang="en">One listing template for the category page, the brand page, search results and “All products”: filter chips on phones, a filter column on computers, and “Show more” without a reload.</span></p>
+
+  <div class="shots">
+    <figure class="shot shot--phone"><div class="shot__frame"><img src="demo/category-m-ar.webp" alt="صفحة التصنيف في الجوال" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/category-m-ar.webp</code></div></div><figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b><span lang="ar">الفروع شرائح، ثم صف الفلاتر، ثم شبكة بعمودين.</span><span lang="en">Subcategories as chips, then the filter row, then a two-column grid.</span></figcaption></figure>
+    <figure class="shot shot--desk"><div class="shot__frame"><img src="demo/category-d-ar.webp" alt="صفحة التصنيف في الكمبيوتر" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/category-d-ar.webp</code></div></div><figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b><span lang="ar">مسار الصفحة، وعمود الفلاتر، وشبكة من ستة أعمدة، والصفحات المرقمة.</span><span lang="en">Breadcrumb, filter column, a six-column grid and numbered pages.</span></figcaption></figure>
+  </div>
+
+  <h3><span lang="ar">الفلاتر والترتيب</span><span lang="en">Filters and sorting</span></h3>
+  <ul>
+    <li><span lang="ar"><b>الشرائح في الجوال</b> بالترتيب: «مسح الكل» إن كان فلتر مطبّقاً، ثم الشرائح المطبّقة، ثم «ترتيب»، ثم «العروض»، ثم «السعر»، ثم خاصية لكل معيار تصفية في زد. الشريحة المطبّقة تكتب ما اختاره الزائر: «النكهة · 2»، «السعر: 60–90».</span><span lang="en"><b>Chips on phones</b> in order: “Clear all” when a filter is applied, then the applied chips, then “Sort”, “Offers”, “Price”, and a chip per filter criterion in Zid. An applied chip states the choice: “Flavor · 2”, “Price: 60–90”.</span></li>
+    <li><span lang="ar"><b>الترتيب:</b> المقترح (ترتيب زد الافتراضي)، والأحدث، والأكثر شعبية، والسعر من الأقل، والسعر من الأعلى.</span><span lang="en"><b>Sort:</b> Recommended (Zid’s default order), Newest, Most popular, Price low to high, Price high to low.</span></li>
+    <li><span lang="ar"><b>«العروض»</b> يعرض المنتجات المخفضة وحدها بضغطة. و<b>«السعر»</b> نافذة بخانتي «من» و«إلى» بعملة الزائر، ويقرأ السعر بعد الخصم.</span><span lang="en"><b>“Offers”</b> shows discounted products only, with one tap. <b>“Price”</b> is a sheet with “From” and “To” in the visitor’s currency, reading the price after discount.</span></li>
+    <li><span lang="ar"><b>الخصائص</b> (النكهة، والمقاس، والوزن…) تأتي من «معايير التصفية» في لوحة زد. بدون تفعيلها لا يظهر أي فلتر. الفلتر الجديد يصل الزوار بعد نحو 20 دقيقة.</span><span lang="en"><b>Attributes</b> (flavor, size, weight…) come from “Filter criteria” in the Zid dashboard. Without enabling it no filter shows. A new filter reaches visitors after about 20 minutes.</span></li>
+    <li><span lang="ar"><b>الماركة ليست فلتراً</b> في زد؛ الوصول إلى الماركة من صفحتها ومن صفحة «الماركات». إن أردت فلتر ماركة، أضف «الماركة» خاصيةً في معايير التصفية فتظهر كأي خاصية.</span><span lang="en"><b>Brand is not a filter</b> in Zid; brands are reached through their pages and the “Brands” page. For a brand filter, add “Brand” as an attribute in Filter criteria and it shows like any attribute.</span></li>
+    <li><span lang="ar"><b>الرجوع من منتج</b> يعيد الزائر إلى مكانه بالمنتجات التي حمّلها وفلاتره، وتغيير الفلتر لا يضيف خطوة في زر الرجوع.</span><span lang="en"><b>Back from a product</b> returns the visitor to the same spot with the loaded products and filters, and changing a filter adds no step to the back button.</span></li>
+  </ul>
+  <p class="path"><span><span lang="ar">إعدادات الثيم</span><span lang="en">Theme settings</span></span><i>←</i><span><span lang="ar">صفحة التصنيف</span><span lang="en">Category page</span></span><i>←</i><span><span lang="ar">إخفاء النافد في صفحات الأقسام والماركات والبحث</span><span lang="en">Hide sold-out on category, brand &amp; search</span></span></p>
+  <p><span lang="ar">مطفأ افتراضياً: النافد يبقى في مكانه باهتاً مع «أبلغني». مفعّلاً: يعرض المتوفر وحده، ويتبعه «كمّل طلبك» في السلة.</span><span lang="en">Off by default: sold-out products stay in place, faded, with “Notify me”. On: only available products show, and the cart’s “Complete your order” follows the same rule.</span></p>
+
+  <h3><span lang="ar">صفحة التصنيف</span><span lang="en">The category page</span></h3>
+  <p><span lang="ar">اسم التصنيف في الهيدر، وفروعه شرائح تحته إن وُجدت، ثم الفلاتر والشبكة: 24 منتجاً ثم «24 من 96 منتجاً» وزر «عرض المزيد». بعد المنتجات يظهر وصف التصنيف مطوياً إلى 3 أسطر مع «المزيد» إن كتبته في زد، فاكتب لكل قسم رئيسي وصفاً قصيراً باللغتين يفيد محركات البحث. تصنيف بلا منتجات يعرض «لا توجد منتجات في هذا القسم حالياً» و«تابع التسوق».</span><span lang="en">The category name in the header, its subcategories as chips beneath if any, then the filters and the grid: 24 products, then “24 of 96 products” and “Show more”. After the products the category description shows folded to 3 lines with “More” if you wrote one in Zid, so write a short description for each main category in both languages; it helps search engines. A category without products shows “No products in this category yet” and “Continue shopping”.</span></p>
+
+  <h3><span lang="ar">صفحة الماركة وصفحة «الماركات»</span><span lang="en">The brand page and the “Brands” page</span></h3>
+  <ul>
+    <li><span lang="ar"><b>صفحة الماركة</b> <code>/brands/اسم-الماركة</code>: الشعار في مربع أبيض، والاسم، و«84 منتجاً»، والوصف مطوياً، ثم الفلاتر والشبكة نفسها. تُفتح من بطاقة الماركة في صفحة المنتج، ومن «صندوق ماركة» و«ماركات مميزة» و«الماركات».</span><span lang="en"><b>The brand page</b> <code>/brands/brand-name</code>: the logo in a white box, the name, “84 products”, the description folded, then the same filters and grid. Reached from the brand card on the product page, from “Brand box”, “Featured brands” and “Brands”.</span></li>
+    <li><span lang="ar"><b>صفحة «الماركات»</b> <code>/brands</code>: في الجوال شبكة من ثلاث بطاقات بالشعار والاسم وعدد المنتجات، وفي الكمبيوتر شريط حروف ومجموعة لكل حرف بشعارات في عشرة أعمدة. الترتيب أبجدي بلغة الزائر، والماركة بلا منتجات لا تظهر.</span><span lang="en"><b>The “Brands” page</b> <code>/brands</code>: on phones a grid of three cards with logo, name and product count; on computers a letter strip and a group per letter with logos in ten columns. Alphabetical in the visitor’s language; a brand with no products does not show.</span></li>
+    <li><span lang="ar"><b>في لوحة زد</b> لكل ماركة: الاسم بالعربي والإنجليزي، و«غلاف العلامة التجارية» (الشعار)، و«وصف العلامة التجارية» حتى 320 حرفاً لكل لغة. واربط كل منتج بماركته، فالمنتج بلا ماركة لا يظهر في أي صفحة ماركة ولا تظهر ماركته في بطاقته.</span><span lang="en"><b>In the Zid dashboard</b> for each brand: the name in Arabic and English, the “Brand cover” (logo), and the “Brand description” up to 320 characters per language. Link every product to its brand; a product without a brand appears on no brand page and shows no brand on its card.</span></li>
+  </ul>
+
+  <h3><span lang="ar">نتائج البحث و«جميع المنتجات»</span><span lang="en">Search results and “All products”</span></h3>
+  <p><span lang="ar">صفحة النتائج <code>/products?q=الكلمة</code> بالقالب نفسه، والكلمة في خانة الهيدر لتعديلها. «لا نتائج» تعرض «جرّب كلمة أخرى» و«الأكثر بحثاً» و«تابع التسوق». و<code>/products</code> بلا كلمة تعرض «جميع المنتجات».</span><span lang="en">The results page <code>/products?q=word</code> uses the same template, with the word in the header field for editing. “No results” shows “Try another word”, “Popular searches” and “Continue shopping”. <code>/products</code> without a word shows “All products”.</span></p>
+</section>
+
+<section class="ch" id="cart">
+  <span class="ch__num">09</span>
+  <h2><span lang="ar">السلة والدفع</span><span lang="en">Cart and checkout</span></h2>
+  <p class="ch__sum"><span lang="ar">سلة بشريط شحن مجاني ذكي، و«كمّل طلبك»، وكل صناديق زد (الكود، والولاء، والإهداء، والتقسيط)، ودرج سلة في الكمبيوتر. وصفحة إتمام الدفع تبقى لزد.</span><span lang="en">A cart with a smart free-shipping bar, “Complete your order”, every Zid box (code, loyalty, gifting, installments), and a cart drawer on computers. The checkout page stays with Zid.</span></p>
+
+  <div class="shots">
+    <figure class="shot shot--phone"><div class="shot__frame"><img src="demo/cart-m-ar.webp" alt="السلة في الجوال" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/cart-m-ar.webp</code></div></div><figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b><span lang="ar">شريط الشحن المجاني، والأسطر، والكود، وشريط «إتمام الطلب» الثابت.</span><span lang="en">The free-shipping bar, the lines, the code, and the fixed “Complete order” bar.</span></figcaption></figure>
+    <figure class="shot shot--desk"><div class="shot__frame"><img src="demo/cart-d-ar.webp" alt="درج السلة في الكمبيوتر" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/cart-d-ar.webp</code></div></div><figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b><span lang="ar">درج السلة يفتح من أيقونة السلة في أي صفحة، وصفحة السلة الكاملة بعمودين.</span><span lang="en">The cart drawer opens from the cart icon on any page; the full cart page has two columns.</span></figcaption></figure>
+  </div>
+
+  <h3><span lang="ar">شريط الشحن المجاني</span><span lang="en">The free-shipping bar</span></h3>
+  <p><span lang="ar">يظهر أعلى السلة حين فيها منتجات: قبل الحد «أضف 35 ر.س واستخدم كود 150 للشحن المجاني» مع خط تقدم ورابط «أضف المزيد»، وبعد الحد «وصلت للشحن المجاني!» وزر «طبّق الكود» يطبّقه فوراً. الحساب في متصفح الزائر من أسطر السلة.</span><span lang="en">Shown at the top of the cart when it has products: before the threshold “Add SAR 35 and use code 150 for free shipping” with a progress line and an “Add more” link; after it “You’ve reached free shipping!” and an “Apply code” button that applies it at once. The sum is computed in the visitor’s browser from the cart lines.</span></p>
+  <p class="path"><span><span lang="ar">إعدادات الثيم</span><span lang="en">Theme settings</span></span><i>←</i><span><span lang="ar">السلة</span><span lang="en">Cart</span></span></p>
+  <div class="tablewrap"><table>
+    <thead><tr><th><span lang="ar">الإعداد</span><span lang="en">Setting</span></th><th><span lang="ar">ملاحظة</span><span lang="en">Note</span></th></tr></thead>
+    <tbody>
+      <tr><td class="k"><span lang="ar">إظهار شريط الشحن المجاني أعلى السلة</span><span lang="en">Show the free-shipping bar above the cart</span></td><td></td></tr>
+      <tr><td class="k"><span lang="ar">حد الشحن المجاني بعملة السلة</span><span lang="en">Free-shipping threshold in the cart’s currency</span></td><td><span lang="ar">مثل 150. فارغ = يتبع الشريط عرض «الشحن المجاني» التلقائي من زد إن كان مفعّلاً، بلا كود.</span><span lang="en">For example 150. Empty = the bar follows Zid’s automatic “Free shipping” offer if enabled, without a code.</span></td></tr>
+      <tr><td class="k"><span lang="ar">كود الشحن المجاني</span><span lang="en">Free-shipping code</span></td><td><span lang="ar">الكوبون نفسه الذي أنشأته في لوحة زد (التسويق ← الكوبونات). لا يظهر إن أطفأت خانة الكوبون في زد.</span><span lang="en">The coupon you created in the Zid dashboard (Marketing → Coupons). Hidden if you disabled the coupon field in Zid.</span></td></tr>
+      <tr><td class="k"><span lang="ar">تصنيف لا تُحسب منتجاته في الحد</span><span lang="en">A category whose products do not count toward the threshold</span></td><td><span lang="ar">مثلاً الأجهزة الثقيلة أو منتجات لا يشملها العرض. اختر التصنيف نفسه المستثنى في الكوبون.</span><span lang="en">For example heavy items or products the offer excludes. Pick the same category the coupon excludes.</span></td></tr>
+      <tr><td class="k"><span lang="ar">لا تُحسب المنتجات المخفضة في الحد</span><span lang="en">Discounted products do not count toward the threshold</span></td><td></td></tr>
+      <tr><td class="k"><span lang="ar">دولة الشريط</span><span lang="en">The bar’s country</span></td><td><span lang="ar">رمز من حرفين مثل SA: يظهر الشريط لزوار هذه الدولة فقط. فارغ = كل الدول.</span><span lang="en">A two-letter code such as SA: the bar shows to visitors from that country only. Empty = every country.</span></td></tr>
+      <tr><td class="k"><span lang="ar">عنوان «كمّل طلبك» وتصنيفه</span><span lang="en">“Complete your order” title and category</span></td><td><span lang="ar">يعرض أول 9 منتجات من التصنيف تحت السلة، مثل «بـ25 وأقل». يختفي إن فرغ التصنيف أو لم يُحدَّد. أبقِ التصنيف منشوراً.</span><span lang="en">Shows the category’s first 9 products under the cart, such as “Under 25”. Hidden if the category is empty or unset. Keep the category published.</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span lang="ar">ما في السلة</span><span lang="en">What the cart holds</span></h3>
+  <ul>
+    <li><span lang="ar"><b>الأسطر:</b> الصورة، والماركة، والاسم مع الخيار، والسعر القديم والجديد والكبسولة، و«المجموع» إن زادت الكمية، وعداد «+ 1 −» يتوقف عند المخزون أو حدك («لا يتوفر أكثر من 3»، «الحد الأقصى للطلب 2»)، وحذف بنافذة تأكيد. كل تغيير يحدّث الصفحة في مكانها.</span><span lang="en"><b>Lines:</b> picture, brand, name with option, old and new price with the pill, “Total” when quantity is above 1, a “+ 1 −” stepper that stops at stock or your limit (“Only 3 available”, “Maximum per order: 2”), and delete with a confirmation sheet. Every change updates the page in place.</span></li>
+    <li><span lang="ar"><b>كود الخصم:</b> خانة «اكتب الكود» و«تطبيق»، وبعد التطبيق علامة صح و«إزالة». رسالة زد تظهر تحتها إن رُفض.</span><span lang="en"><b>Discount code:</b> a “Enter code” field and “Apply”; after applying, a check mark and “Remove”. Zid’s message shows beneath if refused.</span></li>
+    <li><span lang="ar"><b>صناديق زد لمن يفعّلها:</b> الخصم المتدرج، والكاش باك، و«نقاط الولاء» برصيد العميل وطرق الاستبدال وزر «استخدام»، و«أرسل الطلب كهدية»، وخصومات البنوك، والتقسيط، وApple Pay للسلة كلها.</span><span lang="en"><b>Zid boxes for stores that enable them:</b> progressive discount, cashback, “Loyalty points” with the customer’s balance, redemption ways and “Use”, “Send the order as a gift”, bank discounts, installments, and Apple Pay for the whole cart.</span></li>
+    <li><span lang="ar"><b>شريط «إتمام الطلب» الثابت:</b> الإجمالي، و«وفّرت 45 ر.س»، وسهم يفتح «ملخص الطلب» بأسطر زد، والزر إلى صفحة إتمام الدفع. الزائر غير المسجّل تفتح له نافذة دخول زد أولاً.</span><span lang="en"><b>The fixed “Complete order” bar:</b> the total, “You saved SAR 45”, an arrow that opens the “Order summary” with Zid’s lines, and the button to checkout. A guest gets Zid’s sign-in window first.</span></li>
+    <li><span lang="ar"><b>السلة الفارغة:</b> «سلتك فارغة» و«تابع التسوق» ثم «كمّل طلبك».</span><span lang="en"><b>The empty cart:</b> “Your cart is empty” and “Continue shopping”, then “Complete your order”.</span></li>
+    <li><span lang="ar"><b>درج السلة في الكمبيوتر:</b> أيقونة السلة في الهيدر تفتح درجاً جانبياً بالمحتوى نفسه في أي صفحة، وصفحة <code>/cart</code> بعمودين: الأسطر و«كمّل طلبك» في جهة، والملخص والكود في الأخرى.</span><span lang="en"><b>The cart drawer on computers:</b> the header’s cart icon opens a side drawer with the same content on any page, and the <code>/cart</code> page has two columns: lines and “Complete your order” on one side, summary and code on the other.</span></li>
+  </ul>
+  <div class="note"><b><span lang="ar">صفحة إتمام الدفع</span><span lang="en">The checkout page</span></b><span lang="ar">من زد لكل المتاجر، بلا هيدر الثيم: في أعلاها شعار متجرك من «الهوية» في لوحة زد وأيقونة سلة. فإن لم ترفع الشعار هناك ظهرت الأيقونة وحدها.</span><span lang="en">Zid’s own page for every store, without the theme header: at its top your store logo from “Branding” in the Zid dashboard and a cart icon. Without that logo only the icon shows.</span></div>
+</section>
+<section class="ch" id="footer">
+  <span class="ch__num">10</span>
+  <h2><span lang="ar">أسفل الصفحة</span><span lang="en">Bottom of the page</span></h2>
+  <p class="ch__sum"><span lang="ar">كل صفحة تنتهي بشريط الثقة و«تحتاج مساعدة؟». في الجوال يأتي بعدهما الشريط السفلي الثابت، وفي الكمبيوتر الفوتر. المجموعات الأربع في «أسفل الصفحة»، ولكل لغة قيمها.</span><span lang="en">Every page ends with the trust strip and “Need help?”. On phones the fixed bottom bar follows; on computers, the footer. The four groups sit under “Footer”, each with a value per language.</span></p>
+
+  <div class="shots">
+    <figure class="shot shot--desk"><div class="shot__frame"><img src="demo/footer-d-ar.webp" alt="الفوتر في الكمبيوتر" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/footer-d-ar.webp</code></div></div><figcaption><b><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></b><span lang="ar">شريط الثقة، ثم «تحتاج مساعدة؟»، ثم أعمدة الفوتر والسطر الأخير.</span><span lang="en">The trust strip, then “Need help?”, then the footer columns and the last row.</span></figcaption></figure>
+    <figure class="shot shot--phone"><div class="shot__frame"><img src="demo/about-m-ar.webp" alt="عن المتجر في الجوال" loading="lazy" onerror="this.closest('.shot').classList.add('pending')"><div class="shot__wait"><span lang="ar">لقطة من المتجر التجريبي</span><span lang="en">Demo-store screenshot</span><code>demo/about-m-ar.webp</code></div></div><figcaption><b><span lang="ar">الجوال</span><span lang="en">Phone</span></b><span lang="ar">«عن المتجر» في صفحة الأقسام يقوم مقام الفوتر.</span><span lang="en">“About the store” on the categories page stands in for the footer.</span></figcaption></figure>
+  </div>
+
+  <h3><span lang="ar">شريط الثقة</span><span lang="en">The trust strip</span></h3>
+  <p><span lang="ar">أربع ميزات بأيقونات خطية: في الجوال صف واحد والنص تحت الأيقونة، وفي الكمبيوتر النص بجانبها. لكل ميزة «الأيقونة» من تسع (درع وعلامة صح، ونجمة، وشاحنة، وقفل، وسهم رجوع، وهدية، وسماعة، وبطاقة سعر، ومحفظة) و«النص». اختر «بلا» لإخفاء ميزة، وفارغ في النص = نص الأيقونة الجاهز. الافتراضي: منتجات أصلية، ودعم العملاء، وشحن سريع، ودفع آمن.</span><span lang="en">Four features with line icons: one row on phones with the text under the icon, and the text beside it on computers. Each feature has an “Icon” from nine (shield with check, star, truck, lock, return arrow, gift, headset, price tag, wallet) and a “Text”. Pick “None” to hide a feature; an empty text uses the icon’s ready text. Default: genuine products, customer support, fast shipping, secure payment.</span></p>
+
+  <h3><span lang="ar">تحتاج مساعدة؟</span><span lang="en">Need help?</span></h3>
+  <p><span lang="ar">شريط بلون الهوية بثلاث قنوات: واتساب، والبريد، والأسئلة الشائعة. الإعدادات: الإظهار، و«العنوان» و«سطر الوصف»، ولكل قناة مفتاح إظهار وقيمة. الواتساب بالصيغة الدولية بلا +، مثل 9665XXXXXXXX، وفارغ = جوال المتجر من لوحة زد (اكتبه هنا إن لم تظهر القناة). البريد فارغ = بريد المتجر. رابط الأسئلة فارغ = صفحة الأسئلة الشائعة في زد.</span><span lang="en">A band in the brand color with three channels: WhatsApp, email and FAQs. Settings: show, “Title” and “Description line”, and a show switch and value per channel. WhatsApp in international format without +, such as 9665XXXXXXXX; empty = the store phone from the Zid dashboard (type it here if the channel does not appear). Email empty = the store email. The FAQ link empty = Zid’s FAQ page.</span></p>
+
+  <h3><span lang="ar">الشريط السفلي (الجوال)</span><span lang="en">The bottom bar (phone)</span></h3>
+  <p><span lang="ar">خمسة عناصر ثابتة في أسفل الشاشة: الرئيسية، والأقسام، والشعار الموسمي في الوسط، والسلة بدائرة العدد، وحسابي. يبقى ظاهراً في كل الصفحات، ومنها صفحة المنتج والسلة. الإعدادان: «الشعار الموسمي» (200×200، PNG شفاف أو GIF) و«رابطه».</span><span lang="en">Five fixed items at the bottom of the screen: Home, Categories, the seasonal logo in the middle, Cart with the count badge, and Account. It stays on every page, including product and cart. Two settings: “Seasonal logo” (200×200, transparent PNG or GIF) and its “Link”.</span></p>
+
+  <h3><span lang="ar">الفوتر (الكمبيوتر)</span><span lang="en">The footer (computer)</span></h3>
+  <p><span lang="ar">خمسة أعمدة: «أشهر الأقسام» (أول 6 من القائمة الرئيسية)، واسم المتجر (المدونة، والشحن والدفع، والأسئلة الشائعة، والصفحات القانونية، وروابطك الإضافية، وعنوان المتجر)، و«حسابي»، و«تواصل معنا» (واتساب وحسابات التواصل من لوحة زد)، و«حمّل التطبيق» إن وضعت رابطيه. وتحتها سطر أخير: شعارات طرق الدفع وشركات الشحن، وحقوق النشر كما تكتبها زد، والسجل التجاري والرقم الضريبي وشهادته، وشهادة المركز السعودي للأعمال.</span><span lang="en">Five columns: “Top categories” (the main menu’s first 6), the store name (blog, shipping and payment, FAQs, legal pages, your extra links and the store address), “My account”, “Contact us” (WhatsApp and the social accounts from the Zid dashboard), and “Download the app” if you add its two links. Beneath, a last row: payment and shipping logos, the copyright as Zid writes it, the commercial registration and VAT number with its certificate, and the Saudi Business Center seal.</span></p>
+  <div class="tablewrap"><table>
+    <thead><tr><th><span lang="ar">الإعداد</span><span lang="en">Setting</span></th><th><span lang="ar">ملاحظة</span><span lang="en">Note</span></th></tr></thead>
+    <tbody>
+      <tr><td class="k"><span lang="ar">حمّل التطبيق: رابط Google Play / App Store</span><span lang="en">Download the app: Google Play / App Store link</span></td><td><span lang="ar">في أداة الروابط اختر «أخرى» والصق الرابط. العمود يختفي إن فرغا.</span><span lang="en">In the link tool pick “Other” and paste the link. The column hides when both are empty.</span></td></tr>
+      <tr><td class="k"><span lang="ar">روابط إضافية: الرابط 1–4: الاسم والرابط</span><span lang="en">Extra links: link 1–4: label and link</span></td><td><span lang="ar">لصفحاتك المخصصة («من نحن»، «فروعنا»…) لأن زد لا تعطي الثيم قائمة بها. تظهر في عمود اسم المتجر وفي «عن المتجر» على الجوال. الرابط بلا اسم لا يظهر.</span><span lang="en">For your custom pages (“About us”, “Our branches”…), since Zid gives the theme no list of them. They show in the store-name column and under “About the store” on phones. A link without a label does not show.</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><b><span lang="ar">لا فوتر في الجوال</span><span lang="en">No footer on phones</span></b><span lang="ar">قرار تصميم: الجوال ينتهي بـ«تحتاج مساعدة؟»، والسياسات وبيانات المتجر في «عن المتجر» داخل صفحة الأقسام، كما تفعل أكبر المتاجر السعودية.</span><span lang="en">A design decision: the phone page ends with “Need help?”, and policies and store details live under “About the store” inside the categories page, as the largest Saudi stores do.</span></div>
+</section>
+
+<section class="ch" id="agegate">
+  <span class="ch__num">11</span>
+  <h2><span lang="ar">نافذة العمر</span><span lang="en">Age gate</span></h2>
+  <p class="ch__sum"><span lang="ar">للمتاجر التي يشترط القانون فيها تأكيد عمر الزائر. مطفأة افتراضياً، ولا تحتاجها معظم المتاجر.</span><span lang="en">For stores where the law requires confirming the visitor’s age. Off by default; most stores do not need it.</span></p>
+  <p><span lang="ar">تظهر مرة واحدة عند أول دخول فوق كل شيء، ولا يمكن التصفح خلفها: بطاقة بيضاء فيها الشعار، والعنوان، والنص، وزر الموافقة بلون الهوية، وزر الرفض، وزر صغير للغة. «نعم» تُحفظ على الجهاز، و«لا» تعيد الزائر إلى الموقع الذي جاء منه، ومن دخل مباشرة يرى «نأسف، هذا الموقع للبالغين فقط». رابط «شروط الاستخدام» في سطر الإقرار يفتح صفحة الشروط بلا نافذة ليقرأها الزائر قبل الموافقة.</span><span lang="en">It shows once on first entry, above everything, and nothing can be browsed behind it: a white card with the logo, title, text, an accept button in the brand color, a decline button and a small language button. “Yes” is remembered on the device; “No” sends the visitor back where they came from, and a direct visitor sees “Sorry, this site is for adults only”. The “Terms of use” link in the consent line opens the terms page without the gate, so visitors can read before agreeing.</span></p>
+  <p class="path"><span><span lang="ar">إعدادات الثيم</span><span lang="en">Theme settings</span></span><i>←</i><span><span lang="ar">نافذة العمر</span><span lang="en">Age gate</span></span></p>
+  <ul>
+    <li><span lang="ar"><b>إظهار نافذة العمر</b>: فعّلها في محرر كل لغة، وإلا تجاوزها الزائر بتبديل اللغة.</span><span lang="en"><b>Show the age gate</b>: enable it in each language’s editor, or a visitor bypasses it by switching language.</span></li>
+    <li><span lang="ar"><b>أقل عمر</b>: رقم (18 افتراضياً)، بالرقم نفسه في المحررين. يحل مكان <code>{العمر}</code> في كل النصوص.</span><span lang="en"><b>Minimum age</b>: a number (18 by default), the same in both editors. It replaces <code>{age}</code> in every text.</span></li>
+    <li><span lang="ar"><b>العنوان، والنص، والسؤال، وزر الموافقة، وزر الرفض، وسطر الإقرار</b>: اكتب <code>{العمر}</code> مكان الرقم. فارغ = نص الثيم الجاهز.</span><span lang="en"><b>Title, text, question, accept button, decline button and consent line</b>: write <code>{age}</code> where the number goes. Empty = the theme’s ready text.</span></li>
+    <li><span lang="ar"><b>رابط «شروط الاستخدام»</b>: اختياري؛ إن وُضع ولم تكن العبارة في سطر الإقرار أضافها الثيم في آخره.</span><span lang="en"><b>“Terms of use” link</b>: optional; if set and the phrase is missing from the consent line, the theme appends it.</span></li>
+  </ul>
+  <div class="note note--warn"><b><span lang="ar">راجع النص مع مختص</span><span lang="en">Have the text checked</span></b><span lang="ar">حد العمر ونص الإقرار مسؤوليتك القانونية. الثيم يعرض ما تكتبه فقط.</span><span lang="en">The age limit and consent text are your legal responsibility. The theme only shows what you write.</span></div>
+</section>
+
+<section class="ch" id="languages">
+  <span class="ch__num">12</span>
+  <h2><span lang="ar">العربية والإنجليزية</span><span lang="en">Arabic and English</span></h2>
+  <p class="ch__sum"><span lang="ar">قاعدتان فقط: الرئيسية تُبنى مرة واحدة بحقول اللغتين، وإعدادات الهيدر والفوتر والثيم العامة تُكتب في كل محرر على حدة.</span><span lang="en">Two rules only: the home page is built once with both languages’ fields, and the header, footer and general theme settings are written in each editor separately.</span></p>
+  <h3><span lang="ar">الرئيسية: مرة واحدة</span><span lang="en">The home page: once</span></h3>
+  <ul>
+    <li><span lang="ar">ابنِ الرئيسية في محرر اللغة الرئيسية للمتجر (العربي عادة). في كل قسم حقلان لكل نص وصورة: عربي وإنجليزي. الإنجليزي اختياري، وإن فرغ ظهر العربي.</span><span lang="en">Build the home page in the store’s main-language editor (usually Arabic). Every section has two fields for each text and picture: Arabic and English. English is optional; when empty, Arabic shows.</span></li>
+    <li><span lang="ar">اترك قائمة أقسام المحرر الإنجليزي فارغة. ما دامت فارغة تعرض الصفحة الإنجليزية أقسام العربي. يظهر تنبيه بذلك في المحررين لأن زد لا تخبر الثيم بلغة المتجر الرئيسية.</span><span lang="en">Leave the English editor’s section list empty. While it is empty, the English page shows the Arabic editor’s sections. A notice says so in both editors, because Zid does not tell the theme the store’s main language.</span></li>
+    <li><span lang="ar">في الصورة الإنجليزية ضع النص في اليسار، فاتجاه الصفحة ينقلب.</span><span lang="en">In English pictures put the text on the left; the page direction flips.</span></li>
+    <li><span lang="ar">متجر لغته الرئيسية الإنجليزية يبني رئيسيته في المحرر الإنجليزي بالطريقة نفسها. ومتجر بلغة واحدة يملأ حقول لغته فقط.</span><span lang="en">A store whose main language is English builds its home in the English editor the same way. A single-language store fills only its language’s fields.</span></li>
+  </ul>
+  <h3><span lang="ar">بقية الإعدادات: في كل محرر</span><span lang="en">Other settings: in each editor</span></h3>
+  <p><span lang="ar">الشريط العلوي، والبحث، والشعار والهيدر، وشريط الثقة، و«تحتاج مساعدة؟»، والشريط السفلي، والفوتر، والألوان، والخط، وبطاقة المنتج، والسلة، ونافذة العمر: لكل لغة قيمها بلا استعارة. اكتبها في المحرر العربي، ثم بدّل إلى الإنجليزي واكتبها هناك، واضغط «نشر» في كل محرر. ما يفرغ في المحرر الإنجليزي لا يظهر للزائر الإنجليزي (مثل نص الشريط العلوي).</span><span lang="en">Top bar, search, logo and header, trust strip, “Need help?”, bottom bar, footer, colors, font, product card, cart and age gate: each language has its own values with no fallback. Fill them in the Arabic editor, switch to English and fill them there, and press “Publish” in each editor. Whatever is left empty in the English editor does not show to English visitors (such as the top bar text).</span></p>
+  <h3><span lang="ar">ما يأتي من زد بلغة الزائر</span><span lang="en">What Zid provides in the visitor’s language</span></h3>
+  <p><span lang="ar">أسماء المنتجات والتصنيفات والماركات وأوصافها، والصفحات القانونية، والأسئلة الشائعة: من ترجماتها في لوحة زد. الماركة بلا اسم إنجليزي تظهر بالعربي في الصفحة الإنجليزية. ونصوص الثيم نفسها (الأزرار، والرسائل، «عرض الكل»…) مترجمة جاهزة.</span><span lang="en">Product, category and brand names and descriptions, legal pages and FAQs: from their translations in the Zid dashboard. A brand without an English name shows in Arabic on the English page. The theme’s own strings (buttons, messages, “View all”…) come translated.</span></p>
+  <h3><span lang="ar">تبديل اللغة</span><span lang="en">Switching language</span></h3>
+  <p><span lang="ar">زر «EN/ع» في الجوال وقائمة «AR» في الكمبيوتر يبدّلان برابط زد المباشر، فيبقى الزائر في الصفحة نفسها ويتذكر المتجر لغته. ونافذة المنطقة من زد تبقى لاختيار الدولة فقط.</span><span lang="en">The “EN/ع” button on phones and the “AR” menu on computers switch through Zid’s direct link, so the visitor stays on the same page and the store remembers the language. Zid’s region window stays for choosing the country only.</span></p>
+</section>
+
+<section class="ch" id="sizes">
+  <span class="ch__num">13</span>
+  <h2><span lang="ar">مقاسات الصور</span><span lang="en">Image sizes</span></h2>
+  <p class="ch__sum"><span lang="ar">القاعدة السهلة: بنرات الجوال بعرض 1242، وبنرات الكمبيوتر بعرض 2832، ومربعات السلايدر بعرض 500. المقاسات نفسها مكتوبة تحت كل حقل صورة في المحرر.</span><span lang="en">The easy rule: phone banners 1242 wide, computer banners 2832 wide, slider tiles 500 wide. The same sizes are written under every image field in the editor.</span></p>
+    <div class="sub" id="sizes-table">
+      <h3><span lang="ar">كل المقاسات في جدول واحد</span><span lang="en">All sizes in one table</span></h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th><span lang="ar">القسم</span><span lang="en">Section</span></th><th><span lang="ar">الصورة</span><span lang="en">Image</span></th><th><span lang="ar">المقاس (بكسل)</span><span lang="en">Size (px)</span></th></tr></thead>
+        <tbody><tr><td><a href="#hero"><span lang="ar">البنر الرئيسي</span><span lang="en">Main banner</span></a></td><td><span lang="ar">الجوال</span><span lang="en">Phone</span></td><td><bdi class="px">1242<i>×</i>1430</bdi></td></tr><tr><td><a href="#hero"><span lang="ar">البنر الرئيسي</span><span lang="en">Main banner</span></a></td><td><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></td><td><bdi class="px">2832<i>×</i>712</bdi></td></tr><tr><td><a href="#wide_short"><span lang="ar">بنر ممتد 3:1</span><span lang="en">Wide banner 3:1</span></a></td><td><span lang="ar">الجوال</span><span lang="en">Phone</span></td><td><bdi class="px">1242<i>×</i>414</bdi></td></tr><tr><td><a href="#wide_short"><span lang="ar">بنر ممتد 3:1</span><span lang="en">Wide banner 3:1</span></a></td><td><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></td><td><bdi class="px">2832<i>×</i>534</bdi></td></tr><tr><td><a href="#wide_medium"><span lang="ar">بنر ممتد 2:1</span><span lang="en">Wide banner 2:1</span></a></td><td><span lang="ar">الجوال</span><span lang="en">Phone</span></td><td><bdi class="px">1242<i>×</i>621</bdi></td></tr><tr><td><a href="#wide_medium"><span lang="ar">بنر ممتد 2:1</span><span lang="en">Wide banner 2:1</span></a></td><td><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></td><td><bdi class="px">2832<i>×</i>534</bdi></td></tr><tr><td><a href="#strip"><span lang="ar">شريط رفيع</span><span lang="en">Thin strip</span></a></td><td><span lang="ar">الجوال (عادي)</span><span lang="en">Phone (normal)</span></td><td><bdi class="px">1242<i>×</i>207</bdi></td></tr><tr><td><a href="#strip"><span lang="ar">شريط رفيع</span><span lang="en">Thin strip</span></a></td><td><span lang="ar">الجوال (رفيع)</span><span lang="en">Phone (thin)</span></td><td><bdi class="px">1242<i>×</i>155</bdi></td></tr><tr><td><a href="#strip"><span lang="ar">شريط رفيع</span><span lang="en">Thin strip</span></a></td><td><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></td><td><bdi class="px">2832<i>×</i>236</bdi></td></tr><tr><td><a href="#square_pair"><span lang="ar">مربعان متجاوران</span><span lang="en">Square pair</span></a></td><td><span lang="ar">الجوال</span><span lang="en">Phone</span></td><td><bdi class="px">1242<i>×</i>1242</bdi></td></tr><tr><td><a href="#square_pair"><span lang="ar">مربعان متجاوران</span><span lang="en">Square pair</span></a></td><td><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></td><td><bdi class="px">1404<i>×</i>450</bdi></td></tr><tr><td><a href="#banner_duo"><span lang="ar">بنران عريضان</span><span lang="en">Two wide banners</span></a></td><td><span lang="ar">الجهازان</span><span lang="en">Both devices</span></td><td><bdi class="px">1404<i>×</i>450</bdi></td></tr><tr><td><a href="#banner_duo"><span lang="ar">بنران عريضان</span><span lang="en">Two wide banners</span></a></td><td><span lang="ar">مربعة لخيار «جنب بعض»</span><span lang="en">Square, for side by side</span></td><td><bdi class="px">1242<i>×</i>1242</bdi></td></tr><tr><td><a href="#banner_trio"><span lang="ar">ثلاثة بنرات عريضة</span><span lang="en">Three wide banners</span></a></td><td><span lang="ar">الجهازان</span><span lang="en">Both devices</span></td><td><bdi class="px">1404<i>×</i>450</bdi></td></tr><tr><td><a href="#banner_trio"><span lang="ar">ثلاثة بنرات عريضة</span><span lang="en">Three wide banners</span></a></td><td><span lang="ar">مربعة لخيار «جنب بعض»</span><span lang="en">Square, for side by side</span></td><td><bdi class="px">1242<i>×</i>1242</bdi></td></tr><tr><td><a href="#banner_mosaic"><span lang="ar">بنر كبير وبنران صغيران</span><span lang="en">Big and two small banners</span></a></td><td><span lang="ar">البنر الكبير</span><span lang="en">Big banner</span></td><td><bdi class="px">1404<i>×</i>924</bdi></td></tr><tr><td><a href="#banner_mosaic"><span lang="ar">بنر كبير وبنران صغيران</span><span lang="en">Big and two small banners</span></a></td><td><span lang="ar">البنران الصغيران</span><span lang="en">Small banners</span></td><td><bdi class="px">1404<i>×</i>450</bdi></td></tr><tr><td><a href="#banner_cards"><span lang="ar">بطاقات بنر</span><span lang="en">Banner cards</span></a></td><td><span lang="ar">الجهازان</span><span lang="en">Both devices</span></td><td><bdi class="px">500<i>×</i>281</bdi></td></tr><tr><td><a href="#tile_row"><span lang="ar">صف مربعات</span><span lang="en">Tile row</span></a></td><td><span lang="ar">مربع</span><span lang="en">Square</span></td><td><bdi class="px">500<i>×</i>500</bdi></td></tr><tr><td><a href="#tile_row"><span lang="ar">صف مربعات</span><span lang="en">Tile row</span></a></td><td><span lang="ar">مستطيل</span><span lang="en">Rectangle</span></td><td><bdi class="px">500<i>×</i>333</bdi></td></tr><tr><td><a href="#circles"><span lang="ar">دوائر الاختصارات</span><span lang="en">Shortcut circles</span></a></td><td><span lang="ar">الدائرة</span><span lang="en">Circle</span></td><td><bdi class="px">300<i>×</i>300</bdi></td></tr><tr><td><a href="#circles"><span lang="ar">دوائر الاختصارات</span><span lang="en">Shortcut circles</span></a></td><td><span lang="ar">مع الاسم داخل الصورة</span><span lang="en">With the name in the image</span></td><td><bdi class="px">300<i>×</i>325</bdi></td></tr><tr><td><a href="#usage_tiles"><span lang="ar">مربعات الأقسام الفرعية</span><span lang="en">Subcategory tiles</span></a></td><td><span lang="ar">الجهازان (بلا نص)</span><span lang="en">Both devices (no text)</span></td><td><bdi class="px">500<i>×</i>500</bdi></td></tr><tr><td><a href="#brand_box"><span lang="ar">صندوق ماركة</span><span lang="en">Brand box</span></a></td><td><span lang="ar">بنر الجوال</span><span lang="en">Phone banner</span></td><td><bdi class="px">1242<i>×</i>414</bdi></td></tr><tr><td><a href="#brand_box"><span lang="ar">صندوق ماركة</span><span lang="en">Brand box</span></a></td><td><span lang="ar">بنر الكمبيوتر</span><span lang="en">Computer banner</span></td><td><bdi class="px">2832<i>×</i>534</bdi></td></tr></tbody>
+      </table></div>
+    </div>
+
+    <div class="sub">
+      <h3><span lang="ar">قواعد الصور</span><span lang="en">Image rules</span></h3>
+      <ul class="rules"><li><span lang="ar">ارفع كل صورة بالمقاس المكتوب، وإلا قُصّت من أطرافها.</span><span lang="en">Upload each image at its listed size, or its edges get cropped.</span></li><li><span lang="ar">الصيغة JPG أو WebP.</span><span lang="en">Format: JPG or WebP.</span></li><li><span lang="ar">حجم الملف أقل من 200 ك.ب، والبنر الرئيسي أقل من 350 ك.ب.</span><span lang="en">File size under 200 KB; the main banner under 350 KB.</span></li><li><span lang="ar">في الصورة الإنجليزية ضع النص في اليسار.</span><span lang="en">In English images, put the text on the left.</span></li><li><span lang="ar">اترك أسفل وسط البنر بلا نص، فهناك نقاط التنقل.</span><span lang="en">Keep the bottom center of a banner free of text; the dots sit there.</span></li><li><span lang="ar">إذا كان للبنر تاريخ نهاية، اترك زاويته العليا المقابلة للنص فارغة للعداد.</span><span lang="en">If a banner has an end date, keep the top corner opposite the text free for the countdown.</span></li></ul>
+    </div>
+  <div class="sub">
+    <h3><span lang="ar">صور خارج الرئيسية</span><span lang="en">Pictures outside the home page</span></h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th><span lang="ar">الصورة</span><span lang="en">Image</span></th><th><span lang="ar">المقاس</span><span lang="en">Size</span></th><th><span lang="ar">أين تُرفع</span><span lang="en">Where to upload</span></th></tr></thead>
+      <tbody>
+        <tr><td><span lang="ar">صور المنتجات</span><span lang="en">Product pictures</span></td><td><bdi class="px">1200<i>×</i>1200</bdi></td><td><span lang="ar">لوحة زد، المنتج. مربعة على أبيض، والمنتج يملأ نحو 80%.</span><span lang="en">Zid dashboard, the product. Square on white, product filling about 80%.</span></td></tr>
+        <tr><td><span lang="ar">صورة التصنيف</span><span lang="en">Category image</span></td><td><bdi class="px">500<i>×</i>500</bdi></td><td><span lang="ar">لوحة زد، التصنيف. تظهر دائرة في صفحة الأقسام وأيقونة في قائمة الكمبيوتر.</span><span lang="en">Zid dashboard, the category. Shows as a circle on the categories page and an icon in the computer menu.</span></td></tr>
+        <tr><td><span lang="ar">غلاف التصنيف («الصورة الخلفية للتصنيف»)</span><span lang="en">Category cover (“Category background image”)</span></td><td><bdi class="px">900<i>×</i>300</bdi></td><td><span lang="ar">لوحة زد، التصنيف. بانر صفحة الأقسام وقائمة الكمبيوتر.</span><span lang="en">Zid dashboard, the category. The banner on the categories page and in the computer menu.</span></td></tr>
+        <tr><td><span lang="ar">شعار الماركة («غلاف العلامة التجارية»)</span><span lang="en">Brand logo (“Brand cover”)</span></td><td><span lang="ar">400 بكسل على الأقل، شفاف</span><span lang="en">At least 400 px, transparent</span></td><td><span lang="ar">لوحة زد، الماركة. وفي المحرر لـ«ماركات مميزة».</span><span lang="en">Zid dashboard, the brand. Also in the editor for “Featured brands”.</span></td></tr>
+        <tr><td><span lang="ar">شعار المتجر</span><span lang="en">Store logo</span></td><td><span lang="ar">SVG، أو PNG شفاف بعرض 340 على الأقل</span><span lang="en">SVG, or transparent PNG at least 340 wide</span></td><td><span lang="ar">لوحة زد ← الهوية، أو «شعار بديل» في محرر كل لغة.</span><span lang="en">Zid dashboard → Branding, or “Alternative logo” in each language’s editor.</span></td></tr>
+        <tr><td><span lang="ar">شعار الهيدر المختصر</span><span lang="en">Compact header logo</span></td><td><span lang="ar">مربع، 200 على الأقل</span><span lang="en">Square, at least 200</span></td><td><span lang="ar">المحرر ← الشعار والهيدر.</span><span lang="en">Editor → Logo and header.</span></td></tr>
+        <tr><td><span lang="ar">الشعار الموسمي في الشريط السفلي</span><span lang="en">Seasonal logo in the bottom bar</span></td><td><bdi class="px">200<i>×</i>200</bdi></td><td><span lang="ar">المحرر ← الشريط السفلي. PNG شفاف أو GIF متحرك.</span><span lang="en">Editor → Bottom bar. Transparent PNG or animated GIF.</span></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="ch" id="devices">
+  <span class="ch__num">14</span>
+  <h2><span lang="ar">الجوال مقابل الكمبيوتر</span><span lang="en">Phone versus computer</span></h2>
+  <p class="ch__sum"><span lang="ar">شكل الكمبيوتر من عرض 1024 بكسل، وتحته تصميم الجوال بعرض الشاشة: الآيباد بالعرض يأخذ الكمبيوتر وبالطول يأخذ الجوال.</span><span lang="en">The computer layout starts at 1024 px; below that, the phone design fills the screen: an iPad in landscape gets the computer layout, in portrait the phone one.</span></p>
+  <div class="tablewrap"><table>
+    <thead><tr><th><span lang="ar">العنصر</span><span lang="en">Element</span></th><th><span lang="ar">الجوال</span><span lang="en">Phone</span></th><th><span lang="ar">الكمبيوتر</span><span lang="en">Computer</span></th></tr></thead>
+    <tbody>
+      <tr><td class="k"><span lang="ar">الهيدر</span><span lang="en">Header</span></td><td><span lang="ar">خانة بحث وزر لغة، تثبت عند التمرير؛ لا شعار</span><span lang="en">Search field and language button, sticky on scroll; no logo</span></td><td><span lang="ar">صفان بالشعار والبحث والأقسام، يصيران صفاً واحداً</span><span lang="en">Two rows with logo, search and categories, collapsing to one</span></td></tr>
+      <tr><td class="k"><span lang="ar">التنقل</span><span lang="en">Navigation</span></td><td><span lang="ar">الشريط السفلي وصفحة «الأقسام»</span><span lang="en">The bottom bar and the “Categories” page</span></td><td><span lang="ar">صف الأقسام وقائمة «جميع الأقسام» المنسدلة</span><span lang="en">The category row and the “All categories” drop-down</span></td></tr>
+      <tr><td class="k"><span lang="ar">الدوائر والشريط الرفيع</span><span lang="en">Circles and thin strip</span></td><td><span lang="ar">تظهر</span><span lang="en">Shown</span></td><td><span lang="ar">الدوائر لا تظهر؛ الشريط اختياري</span><span lang="en">Circles never show; the strip is optional</span></td></tr>
+      <tr><td class="k"><span lang="ar">الفلاتر</span><span lang="en">Filters</span></td><td><span lang="ar">شرائح ونوافذ سفلية</span><span lang="en">Chips and bottom sheets</span></td><td><span lang="ar">عمود جانبي دائم</span><span lang="en">A permanent side column</span></td></tr>
+      <tr><td class="k"><span lang="ar">الشبكة</span><span lang="en">Grid</span></td><td><span lang="ar">عمودان (أربعة على التابلت)</span><span lang="en">Two columns (four on tablets)</span></td><td><span lang="ar">ستة أعمدة، وأربعة بين 1024 و1279</span><span lang="en">Six columns, four between 1024 and 1279</span></td></tr>
+      <tr><td class="k"><span lang="ar">السلة</span><span lang="en">Cart</span></td><td><span lang="ar">صفحة بشريط إتمام ثابت</span><span lang="en">A page with a fixed checkout bar</span></td><td><span lang="ar">درج جانبي، وصفحة بعمودين</span><span lang="en">A side drawer, and a two-column page</span></td></tr>
+      <tr><td class="k"><span lang="ar">النوافذ</span><span lang="en">Dialogs</span></td><td><span lang="ar">من أسفل الشاشة، يغلقها زر الرجوع</span><span lang="en">From the bottom, closed by the back button</span></td><td><span lang="ar">في وسط الشاشة، تُغلق بـ × وEsc</span><span lang="en">Centered, closed with × and Esc</span></td></tr>
+      <tr><td class="k"><span lang="ar">آخر الصفحة</span><span lang="en">End of page</span></td><td><span lang="ar">«تحتاج مساعدة؟» ثم الشريط السفلي؛ لا فوتر</span><span lang="en">“Need help?” then the bottom bar; no footer</span></td><td><span lang="ar">الفوتر بأعمدته وسطره الأخير، وزر «للأعلى»</span><span lang="en">The footer with its columns and last row, plus a “Top” button</span></td></tr>
+    </tbody>
+  </table></div>
+  <p><span lang="ar">في الرئيسية استعمل «الظهور» في كل قسم: الدوائر والشرائط للجوال فقط، والبنرات العريضة الثلاثية للكمبيوتر فقط، وسلايدرات المنتجات للجهازين. وعلامة «للجوال فقط» داخل القسم تخفي بنراً واحداً من الكمبيوتر دون القسم كله.</span><span lang="en">On the home page use each section’s “Visibility”: circles and strips for phones only, the three-wide banners for computers only, product sliders for both. The “Phone only” flag inside a section hides one banner from computers without hiding the section.</span></p>
+</section>
+
+<section class="ch" id="zid">
+  <span class="ch__num">15</span>
+  <h2><span lang="ar">ما يأتي من لوحة زد</span><span lang="en">What comes from the Zid dashboard</span></h2>
+  <p class="ch__sum"><span lang="ar">الثيم يعرض بيانات متجرك كما هي في زد. هذه قائمة ما يجب أن يكون جاهزاً هناك، وأين يظهر في الثيم.</span><span lang="en">The theme shows your store data as it is in Zid. This is the list of what must be ready there, and where it appears in the theme.</span></p>
+  <div class="tablewrap"><table>
+    <thead><tr><th><span lang="ar">في لوحة زد</span><span lang="en">In the Zid dashboard</span></th><th><span lang="ar">يظهر في</span><span lang="en">Appears in</span></th></tr></thead>
+    <tbody>
+      <tr><td class="k"><span lang="ar">الهوية: الشعار ولون الهوية</span><span lang="en">Branding: logo and brand color</span></td><td><span lang="ar">الهيدر، ونافذة العمر، وصفحة الدفع؛ والأزرار والشريط العلوي.</span><span lang="en">Header, age gate and checkout; buttons and the top bar.</span></td></tr>
+      <tr><td class="k"><span lang="ar">القائمة الرئيسية</span><span lang="en">Main menu</span></td><td><span lang="ar">صفحة الأقسام، وهيدر الكمبيوتر، و«أشهر الأقسام» في الفوتر.</span><span lang="en">Categories page, computer header, and “Top categories” in the footer.</span></td></tr>
+      <tr><td class="k"><span lang="ar">الماركات، وربط المنتجات بها</span><span lang="en">Brands, and linking products to them</span></td><td><span lang="ar">الماركة في البطاقة، وبطاقة الماركة في صفحة المنتج، وصفحات الماركات.</span><span lang="en">The brand on cards, the brand card on the product page, and the brand pages.</span></td></tr>
+      <tr><td class="k"><span lang="ar">معايير التصفية</span><span lang="en">Filter criteria</span></td><td><span lang="ar">فلاتر الأقسام والبحث، و«المواصفات» في صفحة المنتج.</span><span lang="en">Category and search filters, and “Specifications” on the product page.</span></td></tr>
+      <tr><td class="k"><span lang="ar">فترة التخفيض على المنتج</span><span lang="en">The product’s sale period</span></td><td><span lang="ar">العداد في البطاقة وصفحة المنتج.</span><span lang="en">The countdown on cards and the product page.</span></td></tr>
+      <tr><td class="k"><span lang="ar">شارة المنتج (Product image label)</span><span lang="en">Product image label</span></td><td><span lang="ar">شارة الزاوية في البطاقة.</span><span lang="en">The corner badge on cards.</span></td></tr>
+      <tr><td class="k"><span lang="ar">بيانات التواصل والحسابات الاجتماعية</span><span lang="en">Contact details and social accounts</span></td><td><span lang="ar">«تحتاج مساعدة؟»، و«تواصل معنا» في الفوتر، و«بيانات المتجر» في الجوال.</span><span lang="en">“Need help?”, “Contact us” in the footer, and “Store details” on phones.</span></td></tr>
+      <tr><td class="k"><span lang="ar">الصفحات القانونية (بمفتاحي التفعيل)</span><span lang="en">Legal pages (both enable switches)</span></td><td><span lang="ar">الفوتر و«عن المتجر». الصفحة تفتح فقط إذا فُعّلت في «الصفحات القانونية» وفي «المتجر الإلكتروني ← الصفحات» معاً.</span><span lang="en">Footer and “About the store”. A page opens only when enabled under “Legal pages” and under “Online store → Pages” together.</span></td></tr>
+      <tr><td class="k"><span lang="ar">الرقم الضريبي وشهادته، والعنوان، والمركز السعودي للأعمال</span><span lang="en">VAT number and certificate, address, Saudi Business Center</span></td><td><span lang="ar">السطر الأخير في الفوتر و«بيانات المتجر».</span><span lang="en">The footer’s last row and “Store details”.</span></td></tr>
+      <tr><td class="k"><span lang="ar">طرق الدفع وشركات الشحن</span><span lang="en">Payment methods and shipping companies</span></td><td><span lang="ar">شعاراتها في الفوتر و«بيانات المتجر» وصفحة «الشحن والدفع».</span><span lang="en">Their logos in the footer, “Store details” and the “Shipping and payment” page.</span></td></tr>
+      <tr><td class="k"><span lang="ar">الأسئلة الشائعة، والمدونة</span><span lang="en">FAQs and the blog</span></td><td><span lang="ar">صفحاتهما وروابطهما في «تحتاج مساعدة؟» والفوتر.</span><span lang="en">Their pages and links in “Need help?” and the footer.</span></td></tr>
+      <tr><td class="k"><span lang="ar">التقييمات والأسئلة، وعدد المبيعات، وتنبيه الكمية، والمنتجات المشابهة</span><span lang="en">Reviews and questions, sales count, low-stock alert, similar products</span></td><td><span lang="ar">صفحة المنتج (الفصل 7).</span><span lang="en">The product page (chapter 7).</span></td></tr>
+      <tr><td class="k"><span lang="ar">الكوبونات، والعروض التلقائية، والحزم</span><span lang="en">Coupons, automatic offers, bundles</span></td><td><span lang="ar">شريط الشحن المجاني، وكود الخصم، و«اشترِها معاً».</span><span lang="en">The free-shipping bar, the discount code and “Buy together”.</span></td></tr>
+      <tr><td class="k"><span lang="ar">برنامج الولاء، والإهداء، والتقسيط، وخصومات البنوك، والحجز المسبق، ونافذة المنطقة</span><span lang="en">Loyalty, gifting, installments, bank discounts, preorder, region window</span></td><td><span lang="ar">صناديقها في صفحة المنتج والسلة، وزر «المكافآت» العائم. ما لا تفعّله لا يظهر.</span><span lang="en">Their boxes on the product page and cart, and the floating “Rewards” button. Whatever you do not enable does not show.</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><b><span lang="ar">التصنيفات المساعدة</span><span lang="en">Helper categories</span></b><span lang="ar">أنشئ تصنيفات للرئيسية والسلة («الأكثر مبيعاً»، «بـ25 وأقل»، «عروض الأسبوع») وأبقها منشورة، فالتصنيف المخفي لا يعطي منتجات. وأخرجها من القائمة الرئيسية إن لم ترد أن تظهر كأقسام.</span><span lang="en">Create categories for the home page and cart (“Best sellers”, “Under 25”, “Deals of the week”) and keep them published; a hidden category gives no products. Leave them out of the main menu if you do not want them shown as sections.</span></div>
+</section>
+
+<section class="ch" id="limits">
+  <span class="ch__num">16</span>
+  <h2><span lang="ar">الحدود المعروفة</span><span lang="en">Known limits</span></h2>
+  <p class="ch__sum"><span lang="ar">ما لا يفعله الثيم، إما بقرار تصميم أو لأن زد لا تعطيه.</span><span lang="en">What the theme does not do, either by design or because Zid does not provide it.</span></p>
+  <ul>
+    <li><span lang="ar"><b>لا فوتر في الجوال</b>، وبدلاً منه «عن المتجر» في صفحة الأقسام.</span><span lang="en"><b>No footer on phones</b>; “About the store” on the categories page stands in.</span></li>
+    <li><span lang="ar"><b>شعار واحد للغتين</b> من زد؛ شعار إنجليزي مختلف يُرفع في «شعار بديل» بالمحرر الإنجليزي.</span><span lang="en"><b>One logo for both languages</b> from Zid; a different English logo goes in “Alternative logo” in the English editor.</span></li>
+    <li><span lang="ar"><b>صفحات الحساب وإتمام الدفع</b> من زد ولا يغيّرها الثيم.</span><span lang="en"><b>Account pages and checkout</b> are Zid’s and the theme does not change them.</span></li>
+    <li><span lang="ar"><b>الماركة ليست فلتراً</b>، ولا تبحث زد باسم الماركة؛ الماركات المقترحة في البحث من قائمتك في المحرر (حتى 8).</span><span lang="en"><b>Brand is not a filter</b>, and Zid does not search by brand name; suggested brands in search come from your editor list (up to 8).</span></li>
+    <li><span lang="ar"><b>لا «الأكثر مبيعاً» تلقائياً</b> ولا «غالباً ما يُشترى معاً»؛ البديل تصنيف يدوي وعروض الحزم.</span><span lang="en"><b>No automatic “Best sellers”</b> and no “Frequently bought together”; the alternatives are a manual category and bundle offers.</span></li>
+    <li><span lang="ar"><b>الأقسام المضافة في الرئيسية فقط</b>؛ بقية الصفحات قوالب ثابتة بإعدادات.</span><span lang="en"><b>Added sections exist only on the home page</b>; other pages are fixed templates with settings.</span></li>
+    <li><span lang="ar"><b>الوضع الداكن هيئة</b> يختارها التاجر، لا زراً للزائر.</span><span lang="en"><b>Dark mode is a preset</b> the merchant picks, not a visitor toggle.</span></li>
+    <li><span lang="ar"><b>تاريخ نهاية البنر</b> خانة نصية بصيغة ثابتة (2026-12-31 أو 2026-12-31T23:59) بتوقيت الرياض، لأن زد لا توفر حقل تاريخ.</span><span lang="en"><b>A banner’s end date</b> is a text field in a fixed format (2026-12-31 or 2026-12-31T23:59), Riyadh time, because Zid has no date field.</span></li>
+    <li><span lang="ar"><b>التأخير من زد:</b> الفلتر الجديد بعد نحو 20 دقيقة، وصور التصنيفات بعد نحو 25، والنفاد في صفحات الأقسام بعد نحو 10، والمفضلة تتأخر دقائق (الثيم يتذكر ضغطات القلب حتى تلحق زد).</span><span lang="en"><b>Delays from Zid:</b> a new filter after about 20 minutes, category pictures after about 25, sold-out status on category pages after about 10, and the wishlist lags a few minutes (the theme remembers heart presses until Zid catches up).</span></li>
+    <li><span lang="ar"><b>عرض الشحن المجاني المحدد بمدن</b> في زد لا يُظهر الشريط، لأن الثيم لا يعرف مدينة الزائر.</span><span lang="en"><b>A city-limited free-shipping offer</b> in Zid does not show the bar, since the theme does not know the visitor’s city.</span></li>
+    <li><span lang="ar"><b>المعاينة السريعة ومقارنة المنتجات</b> ليستا في هذا الإصدار، ومخططتان لإصدار لاحق.</span><span lang="en"><b>Quick view and product compare</b> are not in this version; they are planned for a later one.</span></li>
+  </ul>
+</section>
+
+<section class="ch" id="trouble">
+  <span class="ch__num">17</span>
+  <h2><span lang="ar">حل المشاكل</span><span lang="en">Troubleshooting</span></h2>
+  <p class="ch__sum"><span lang="ar">أكثر ما يُسأل عنه، وسببه في الغالب إعداد في لوحة زد أو في المحرر الآخر.</span><span lang="en">The most common questions; the cause is usually a setting in the Zid dashboard or in the other language’s editor.</span></p>
+
+  <details class="q"><summary><span lang="ar">الصورة مقصوصة من أطرافها</span><span lang="en">The picture is cropped at the edges</span></summary><p><span lang="ar">المقاس يختلف عن المكتوب تحت الحقل. ارفعها بالمقاس المكتوب (الفصل 13). في «جنب بعض» للبنرين والثلاثة تحتاج صورة جوال مربعة 1242×1242.</span><span lang="en">The size differs from what is written under the field. Upload at the listed size (chapter 13). The “side by side” layout for the two and three banners needs a square phone picture, 1242×1242.</span></p></details>
+  <details class="q"><summary><span lang="ar">الصفحة الإنجليزية بلا شريط علوي أو بلا شريط ثقة</span><span lang="en">The English page has no top bar or trust strip</span></summary><p><span lang="ar">إعدادات الهيدر والفوتر لكل لغة قيمها. افتح المحرر الإنجليزي واكتبها هناك ثم «نشر».</span><span lang="en">Header and footer settings have a value per language. Open the English editor, fill them there, then “Publish”.</span></p></details>
+  <details class="q"><summary><span lang="ar">الرئيسية الإنجليزية فارغة أو مختلفة</span><span lang="en">The English home page is empty or different</span></summary><p><span lang="ar">الرئيسية تُبنى في محرر اللغة الرئيسية بحقول اللغتين، وقائمة المحرر الإنجليزي تبقى فارغة. إن أضفت أقساماً في المحرر الإنجليزي فهي التي تظهر هناك؛ احذفها ليعود إلى أقسام العربي.</span><span lang="en">The home page is built in the main language’s editor with both languages’ fields, and the English editor’s list stays empty. If you added sections in the English editor, those show there; delete them to return to the Arabic sections.</span></p></details>
+  <details class="q"><summary><span lang="ar">لا فلاتر في صفحات الأقسام</span><span lang="en">No filters on category pages</span></summary><p><span lang="ar">فعّل «معايير التصفية» في لوحة زد (المنتجات ← معايير التصفية ← تفعيل) واربط الخصائص بالمنتجات. الفلتر يصل الزوار بعد نحو 20 دقيقة.</span><span lang="en">Enable “Filter criteria” in the Zid dashboard (Products → Filter criteria → Enable) and link attributes to products. Filters reach visitors after about 20 minutes.</span></p></details>
+  <details class="q"><summary><span lang="ar">الماركة لا تظهر في البطاقة أو صفحة الماركة فارغة</span><span lang="en">The brand does not show on cards, or the brand page is empty</span></summary><p><span lang="ar">المنتج غير مربوط بماركته في زد. اربطه من صفحة المنتج أو باستيراد تحديث للمنتجات.</span><span lang="en">The product is not linked to its brand in Zid. Link it on the product page or through a product update import.</span></p></details>
+  <details class="q"><summary><span lang="ar">قناة واتساب لا تظهر في «تحتاج مساعدة؟»</span><span lang="en">The WhatsApp channel does not show in “Need help?”</span></summary><p><span lang="ar">جوال المتجر في زد ليس بصيغة دولية. اكتب الرقم في إعدادات «تحتاج مساعدة؟» بالصيغة 9665XXXXXXXX بلا +.</span><span lang="en">The store phone in Zid is not in international format. Type the number in the “Need help?” settings as 9665XXXXXXXX without +.</span></p></details>
+  <details class="q"><summary><span lang="ar">الضغط على الشريط العلوي لا يفتح شيئاً</span><span lang="en">Tapping the top bar opens nothing</span></summary><p><span lang="ar">حقل «نص الشروط في النافذة السفلية» فارغ في هذه اللغة.</span><span lang="en">The “Terms text in the bottom sheet” field is empty in this language.</span></p></details>
+  <details class="q"><summary><span lang="ar">شريط الشحن المجاني لا يظهر</span><span lang="en">The free-shipping bar does not show</span></summary><p><span lang="ar">السلة فارغة، أو دولة الزائر غير «دولة الشريط»، أو مفتاح الإظهار مطفأ، أو الحد فارغ ولا يوجد عرض شحن مجاني تلقائي في زد، أو عرض زد محدد بمدن.</span><span lang="en">The cart is empty, the visitor’s country differs from “The bar’s country”, the show switch is off, the threshold is empty with no automatic free-shipping offer in Zid, or Zid’s offer is limited to cities.</span></p></details>
+  <details class="q"><summary><span lang="ar">«كمّل طلبك» لا يظهر في السلة</span><span lang="en">“Complete your order” does not show in the cart</span></summary><p><span lang="ar">لم يُحدَّد تصنيف، أو التصنيف فارغ، أو مخفي (التصنيف المخفي لا يعطي منتجات). أبقه منشوراً.</span><span lang="en">No category is set, or it is empty or hidden (a hidden category gives no products). Keep it published.</span></p></details>
+  <details class="q"><summary><span lang="ar">العداد لا يظهر على منتج مخفض</span><span lang="en">No countdown on a discounted product</span></summary><p><span lang="ar">المنتج بلا تاريخ نهاية تخفيض في زد. أدخل فترة التخفيض (البداية والنهاية). وفي القسم فعّل «العداد في البطاقات».</span><span lang="en">The product has no sale end date in Zid. Enter the sale period (start and end), and enable “Countdown on cards” in the section.</span></p></details>
+  <details class="q"><summary><span lang="ar">الصفحة القانونية تعطي «غير موجودة»</span><span lang="en">A legal page gives “Not found”</span></summary><p><span lang="ar">تحتاج مفتاحين معاً: الإعدادات ← الصفحات القانونية ← تعديل ← الإظهار، والمتجر الإلكتروني ← الصفحات ← «تفعيل الصفحات في متجرك».</span><span lang="en">It needs two switches together: Settings → Legal pages → Edit → Show, and Online store → Pages → “Enable pages in your store”.</span></p></details>
+  <details class="q"><summary><span lang="ar">قسم في هيدر الكمبيوتر يفتح «غير موجودة»</span><span lang="en">A category in the computer header opens “Not found”</span></summary><p><span lang="ar">قسم حُذف وبقي في القائمة اليدوية. الثيم يسقطه عند التحميل، لكن الأفضل حذفه من القائمة الرئيسية في زد.</span><span lang="en">A deleted category still in the manual menu. The theme drops it on load, but it is better to remove it from the main menu in Zid.</span></p></details>
+  <details class="q"><summary><span lang="ar">نافذة العمر تظهر بلغة ثم تختفي بالأخرى</span><span lang="en">The age gate shows in one language and not the other</span></summary><p><span lang="ar">فعّلها في محرر كل لغة بالعمر نفسه.</span><span lang="en">Enable it in each language’s editor with the same age.</span></p></details>
+  <details class="q"><summary><span lang="ar">المنتج النافد ما زال يظهر في صفحة التصنيف</span><span lang="en">A sold-out product still shows on the category page</span></summary><p><span lang="ar">النفاد يصل صفحات الأقسام بعد نحو 10 دقائق. ولإخفاء النافد كله فعّل «إخفاء النافد في صفحات الأقسام والماركات والبحث».</span><span lang="en">Sold-out status reaches category pages after about 10 minutes. To hide all sold-out products, enable “Hide sold-out on category, brand & search”.</span></p></details>
+  <details class="q"><summary><span lang="ar">زر «المكافآت» العائم يظهر ولا أريده</span><span lang="en">The floating “Rewards” button shows and I do not want it</span></summary><p><span lang="ar">يظهر لمتجر فعّل برنامج الولاء في زد. أطفئ البرنامج هناك.</span><span lang="en">It shows for a store with the loyalty program enabled in Zid. Switch the program off there.</span></p></details>
+  <details class="q"><summary><span lang="ar">التقييم الجديد لا يظهر</span><span lang="en">A new review does not show</span></summary><p><span lang="ar">كل تقييم مخفي حتى تنشره من لوحة زد، وكل سؤال يظهر بعد إجابتك.</span><span lang="en">Every review stays hidden until you publish it from the Zid dashboard, and every question shows after you answer it.</span></p></details>
+</section>
+
+<section class="ch" id="support">
+  <span class="ch__num">18</span>
+  <h2><span lang="ar">الدعم والإصدارات</span><span lang="en">Support and versions</span></h2>
+  <p class="ch__sum"><span lang="ar">الدعم بالبريد وواتساب، والتحديثات من صفحة الثيم في لوحة زد مع سجل التغييرات.</span><span lang="en">Support by email and WhatsApp; updates from the theme’s page in the Zid dashboard with the change log.</span></p>
+  <h3><span lang="ar">قبل أن تراسل الدعم</span><span lang="en">Before you contact support</span></h3>
+  <ul>
+    <li><span lang="ar">راجع الفصل 17؛ معظم الحالات إعداد في لوحة زد أو في المحرر الآخر.</span><span lang="en">Check chapter 17; most cases are a setting in the Zid dashboard or the other language’s editor.</span></li>
+    <li><span lang="ar">أرسل رابط الصفحة، ولقطة شاشة، والجهاز (جوال أو كمبيوتر) واللغة، وإصدار الثيم من صفحة الثيم في لوحتك.</span><span lang="en">Send the page link, a screenshot, the device (phone or computer) and language, and the theme version from the theme’s page in your dashboard.</span></li>
+  </ul>
+  <h3><span lang="ar">قنوات الدعم</span><span lang="en">Support channels</span></h3>
+  <p><span lang="ar">البريد: <code>baagari@gmail.com</code> · واتساب: <code>+966 50 066 9722</code>. الرد خلال يوم عمل.</span><span lang="en">Email: <code>baagari@gmail.com</code> · WhatsApp: <code>+966 50 066 9722</code>. Replies within one working day.</span></p>
+  <h3><span lang="ar">الإصدارات</span><span lang="en">Versions</span></h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th><span lang="ar">الإصدار</span><span lang="en">Version</span></th><th><span lang="ar">ما فيه</span><span lang="en">What it brings</span></th></tr></thead>
+    <tbody>
+      <tr><td class="k">1.0.0</td><td><span lang="ar">الإصدار الأول في سوق الثيمات: 15 قسماً للرئيسية، وكل صفحات المتجر للجوال والكمبيوتر، ولغتان، وثلاث هيئات جاهزة.</span><span lang="en">First Theme Market release: 15 home sections, every store page for phones and computers, two languages, three ready presets.</span></td></tr>
+      <tr><td class="k">1.1 <span lang="ar">(مخطط)</span><span lang="en">(planned)</span></td><td><span lang="ar">المعاينة السريعة للمنتج، ومقارنة المنتجات.</span><span lang="en">Product quick view and product compare.</span></td></tr>
+    </tbody>
+  </table></div>
+  <p><span lang="ar">هذا الدليل يُحدَّث مع كل إصدار؛ رقم الدليل في أعلى الصفحة.</span><span lang="en">This guide is updated with every release; the guide’s version is at the top of the page.</span></p>
+</section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="wrap"><span lang="ar">الصور في هذا الدليل لقطات حقيقية من المتجر التجريبي «الرياض للتموين»؛ متجرك يعرض صوره ومنتجاته هو. ثيم يونيفرسال لمتاجر زد · دليل الاستخدام 1.0.</span><span lang="en">Pictures in this guide are real screenshots of the demo store “Riyadh Tamween”; your store shows its own pictures and products. Universal theme for Zid stores · user guide 1.0.</span></footer>
+</div>
+
+<dialog id="viewer"><form method="dialog"><button type="submit"><span lang="ar">إغلاق</span><span lang="en">Close</span></button></form><img id="viewer-img" alt=""></dialog>
+
+<script>
+(function () {
+  var pg = document.querySelector('.pg');
+  function setLang(l) {
+    pg.dataset.lang = l; pg.dir = l === 'ar' ? 'rtl' : 'ltr'; pg.lang = l;
+    document.documentElement.lang = l; document.documentElement.dir = pg.dir;
+    var dlg = document.getElementById('viewer'); dlg.dir = pg.dir;
+    dlg.querySelectorAll('[lang]').forEach(function (n) { if (n.id !== 'viewer-img') n.style.display = n.lang === l ? '' : 'none'; });
+    try { localStorage.setItem('universal-guide-lang', l); } catch (e) {}
+  }
+  var start = 'ar';
+  try { start = localStorage.getItem('universal-guide-lang') || 'ar'; } catch (e) {}
+  if (location.hash === '#en') start = 'en';
+  setLang(start);
+  document.getElementById('lang').addEventListener('click', function () { setLang(pg.dataset.lang === 'ar' ? 'en' : 'ar'); });
+
+  /* chapter index: mark the chapter in view */
+  var links = document.querySelectorAll('.toc a[href^="#"]');
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && byId[e.target.id]) {
+          links.forEach(function (a) { a.classList.remove('on'); });
+          byId[e.target.id].classList.add('on');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('.ch').forEach(function (s) { io.observe(s); });
+  }
+  /* on narrow screens, fold the index after a pick */
+  var toc = document.getElementById('toc');
+  links.forEach(function (a) { a.addEventListener('click', function () { if (window.innerWidth < 1000) toc.open = false; }); });
+
+  /* zoom the catalogue shots */
+  var dlg = document.getElementById('viewer'), big = document.getElementById('viewer-img');
+  document.querySelectorAll('.zoom').forEach(function (z) {
+    z.addEventListener('click', function () {
+      var img = z.querySelector('img[lang="' + pg.dataset.lang + '"]');
+      if (!img) return;
+      big.src = img.currentSrc || img.src; big.alt = img.alt;
+      if (dlg.showModal) dlg.showModal();
+    });
+  });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+})();
+</script>
+
+</body>
+</html>
